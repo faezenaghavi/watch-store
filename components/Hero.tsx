@@ -1,10 +1,14 @@
-// components/Hero.tsx
-'use client';
+"use client";
 
-import { m } from 'framer-motion';
-import Link from 'next/link';
+import { m } from "framer-motion";
+import Link from "next/link";
+import { useTranslations, useLocale } from "next-intl";
 
 export function Hero() {
+  const t = useTranslations('Hero');
+  const locale = useLocale();
+  const isRTL = locale === "fa";
+
   const fadeUp = (delay: number) => ({
     initial: { opacity: 0, y: 28 },
     animate: { opacity: 1, y: 0 },
@@ -16,13 +20,9 @@ export function Hero() {
   });
 
   const fadeRight = (delay: number) => ({
-    initial: { opacity: 0, x: -16 },
+    initial: { opacity: 0, x: isRTL ? 16 : -16 },
     animate: { opacity: 1, x: 0 },
-    transition: {
-      duration: 0.8,
-      delay,
-      ease: [0.25, 0.46, 0.45, 0.94] as const,
-    },
+    transition: { duration: 0.8, delay, ease: [0.25, 0.46, 0.45, 0.94] as const },
   });
 
   const scaleIn = (delay: number) => ({
@@ -36,9 +36,9 @@ export function Hero() {
   });
 
   const stats = [
-    { value: '500+', label: 'Timepieces' },
-    { value: '12', label: 'Maisons' },
-    { value: '1920', label: 'Since' },
+    { value: "500+", label: "Timepieces" },
+    { value: "12", label: "Maisons" },
+    { value: "1920", label: "Since" },
   ];
 
   return (
@@ -55,8 +55,9 @@ export function Hero() {
         >
           <source src="/images/hero-poster.mp4" type="video/mp4" />
         </video>
-        <div className="absolute inset-0 bg-[#0E1629]/70" />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#0E1629] via-transparent to-[#0E1629]/50" />
+        <div className="absolute inset-0 bg-[#0E1629]/50" />
+        <div className="absolute top-0 left-0 right-0 h-40 bg-gradient-to-b from-[#0E1629] to-transparent z-10" />
+        <div className="absolute inset-0 bg-gradient-to-t from-transparent via-[#0E1629]/10 to-transparent z-0" />
       </div>
 
       {/* ─── Ambient Glow ─── */}
@@ -65,17 +66,16 @@ export function Hero() {
       {/* ─── Left Vertical Accent ─── */}
       <m.div
         {...fadeUp(0)}
-        className="absolute left-8 md:left-16 top-[18%] bottom-[18%] w-px bg-gradient-to-b from-transparent via-[#4A7BFF]/20 to-transparent z-10"
+        className="absolute left-8 md:left-16 rtl:left-auto rtl:right-8 rtl:md:right-16 top-[18%] bottom-[18%] w-px bg-gradient-to-b from-transparent via-[#4A7BFF]/20 to-transparent z-10"
       />
 
       {/* ─── Main Content ─── */}
       <div className="relative z-10 px-8 md:px-16 lg:px-24 w-full max-w-5xl">
-
         <m.div {...fadeRight(0.3)}>
           <div className="flex items-center gap-4">
             <div className="w-8 h-px bg-[#4A7BFF]/60" />
             <span className="text-[11px] tracking-[0.35em] uppercase text-[#D9D9D9]/35 font-light">
-              Chronos Collection — 2024
+              {t('tag')}
             </span>
           </div>
         </m.div>
@@ -83,20 +83,24 @@ export function Hero() {
         <m.h1
           {...fadeUp(0.55)}
           className="mt-8 md:mt-12"
-          style={{ fontFamily: 'var(--font-space)' }}
+          style={{ fontFamily: "var(--font-space)" }}
         >
-          <span className="block text-5xl md:text-7xl lg:text-[7rem] font-light text-white/75 tracking-[-0.03em] leading-[0.9]">
-            Time,
+          <span className="block text-5xl md:text-7xl lg:text-[7rem] font-semibold text-white/50 tracking-[-0.03em] leading-[0.9]">
+            {t('title1')}
           </span>
-          <span className="block text-5xl md:text-7xl lg:text-[7rem] font-bold text-[#0E1629]/70  tracking-[-0.03em] leading-[0.9]">
-            Redefined.
+          <span className="block text-5xl md:text-7xl lg:text-[7rem] font-bold text-gradient-[#4A7BFF] tracking-[-0.03em] leading-[0.9]">
+            {t('title2')}
           </span>
         </m.h1>
 
         <m.div
           initial={{ width: 0, opacity: 0 }}
           animate={{ width: 64, opacity: 1 }}
-          transition={{ duration: 0.9, delay: 1.15, ease: [0.25, 0.46, 0.45, 0.94] }}
+          transition={{
+            duration: 0.9,
+            delay: 1.15,
+            ease: [0.25, 0.46, 0.45, 0.94],
+          }}
           className="h-px bg-white/12 mt-8 md:mt-10"
         />
 
@@ -104,23 +108,25 @@ export function Hero() {
           {...fadeUp(1.35)}
           className="text-[15px] md:text-[16px] text-[#D9D9D9]/45 max-w-[420px] leading-[1.85] font-light"
         >
-          We don&apos;t sell watches. We curate moments
-          that outlive the hands that wear them.
+          {t('desc')}
         </m.p>
 
-        <m.div {...fadeUp(1.7)} className="flex items-center gap-10 mt-10 md:mt-12">
+        <m.div
+          {...fadeUp(1.7)}
+          className="flex items-center gap-10 mt-10 md:mt-12"
+        >
           <Link
             href="/products"
             className="btn-primary rounded-xl px-10 py-4 text-white text-[13px]"
           >
-            Discover Collection
+            {t('btn1')}
           </Link>
           <Link
             href="/brands"
             className="group flex items-center gap-3 text-[12px] text-[#D9D9D9]/35 hover:text-white/70 transition-colors duration-500 tracking-[0.15em] uppercase"
           >
-            <span>View Lookbook</span>
-            <span className="text-[#4A7BFF]/50 transition-transform duration-300 group-hover:translate-x-1.5">
+            <span>{t('btn2')}</span>
+            <span className="text-[#4A7BFF]/50 transition-transform duration-300 group-hover:translate-x-1.5 rtl:group-hover:-translate-x-1.5 rtl:inline-block rtl:rotate-180">
               →
             </span>
           </Link>
@@ -132,64 +138,59 @@ export function Hero() {
         {...scaleIn(1.9)}
         className="hidden md:flex absolute right-16 lg:right-24 top-1/2 -translate-y-1/2 z-10 flex-col items-center gap-8"
       >
-        {/* Geometric rings — abstract movement hint */}
         <div className="relative w-28 h-28 lg:w-32 lg:h-32">
-          {/* Outer ring — slow CW */}
           <div
             className="absolute inset-0 rounded-full border border-dashed border-[#4A7BFF]/10"
-            style={{ animation: 'heroSpin 50s linear infinite' }}
+            style={{ animation: "heroSpin 50s linear infinite" }}
           />
-          {/* Middle ring — slow CCW */}
           <div
             className="absolute inset-4 rounded-full border border-white/[0.04]"
-            style={{ animation: 'heroSpin 35s linear infinite reverse' }}
+            style={{ animation: "heroSpin 35s linear infinite reverse" }}
           />
-          {/* Inner ring */}
           <div className="absolute inset-8 rounded-full border border-[#4A7BFF]/[0.06]" />
-          {/* Cross hair marks */}
           <div className="absolute top-0 left-1/2 -translate-x-1/2 w-px h-1.5 bg-[#4A7BFF]/15" />
           <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-px h-1.5 bg-[#4A7BFF]/15" />
           <div className="absolute left-0 top-1/2 -translate-y-1/2 h-px w-1.5 bg-[#4A7BFF]/15" />
           <div className="absolute right-0 top-1/2 -translate-y-1/2 h-px w-1.5 bg-[#4A7BFF]/15" />
-          {/* Center diamond */}
           <div className="absolute inset-0 flex items-center justify-center">
             <div className="w-2 h-2 rotate-45 border border-[#D4A574]/25" />
           </div>
         </div>
 
-        {/* Vertical stats */}
-        <div className="flex flex-col items-center gap-5">
-          {stats.map((stat, i) => (
-            <m.div
-              key={stat.label}
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{
-                duration: 0.6,
-                delay: 2.3 + i * 0.2,
-                ease: [0.25, 0.46, 0.45, 0.94],
-              }}
-              className="flex flex-col items-center"
-            >
-              <span
-                className="text-xl lg:text-2xl font-light text-white/50 tracking-wide"
-                style={{ fontFamily: 'var(--font-space)' }}
+        {/* ─── مخفی کردن این بخش فقط در حالت فارسی ─── */}
+        {!isRTL && (
+          <div className="flex flex-col items-center gap-5">
+            {stats.map((stat, i) => (
+              <m.div
+                key={stat.label}
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{
+                  duration: 0.6,
+                  delay: 2.3 + i * 0.2,
+                  ease: [0.25, 0.46, 0.45, 0.94],
+                }}
+                className="flex flex-col items-center"
               >
-                {stat.value}
-              </span>
-              <span className="text-[8px] tracking-[0.4em] uppercase text-[#D9D9D9]/20 mt-1">
-                {stat.label}
-              </span>
-            </m.div>
-          ))}
+                <span
+                  className="text-xl lg:text-2xl font-light text-white/50 tracking-wide"
+                  style={{ fontFamily: "var(--font-space)" }}
+                >
+                  {stat.value}
+                </span>
+                <span className="text-[8px] tracking-[0.4em] uppercase text-[#D9D9D9]/20 mt-1">
+                  {stat.label}
+                </span>
+              </m.div>
+            ))}
 
-          {/* Separator dots */}
-          <div className="flex flex-col items-center gap-3 mt-1">
-            <div className="w-[3px] h-[3px] rounded-full bg-[#4A7BFF]/15" />
-            <div className="w-[3px] h-[3px] rounded-full bg-[#4A7BFF]/10" />
-            <div className="w-[3px] h-[3px] rounded-full bg-[#4A7BFF]/[0.06]" />
+            <div className="flex flex-col items-center gap-3 mt-1">
+              <div className="w-[3px] h-[3px] rounded-full bg-[#4A7BFF]/15" />
+              <div className="w-[3px] h-[3px] rounded-full bg-[#4A7BFF]/10" />
+              <div className="w-[3px] h-[3px] rounded-full bg-[#4A7BFF]/[0.06]" />
+            </div>
           </div>
-        </div>
+        )}
       </m.div>
 
       {/* ─── Scroll Indicator ─── */}
@@ -203,7 +204,7 @@ export function Hero() {
         <div className="flex items-center gap-3">
           <div className="w-4 h-px bg-[#D9D9D9]/15" />
           <span className="text-[9px] tracking-[0.4em] uppercase text-[#D9D9D9]/25">
-            Scroll
+            {t('scroll')}
           </span>
           <div className="w-4 h-px bg-[#D9D9D9]/15" />
         </div>

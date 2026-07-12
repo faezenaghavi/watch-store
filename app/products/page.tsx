@@ -8,13 +8,45 @@ export const metadata: Metadata = {
   title: 'All Products',
 };
 
-export default function ProductsPage() {
+interface ProductsPageProps {
+  locale?: "en" | "fa";
+}
+
+export default function ProductsPage({ locale = "en" }: ProductsPageProps) {
+  const copy =
+    locale === "fa"
+      ? {
+          title: "همه ساعت‌ها",
+          subtitle: "مجموعه کامل ساعت‌های منتخب کرونوس.",
+          breadcrumb: "محصولات",
+          showing: "نمایش",
+          unit: "ساعت",
+          featured: "منتخب",
+          priceAsc: "قیمت: کم به زیاد",
+          priceDesc: "قیمت: زیاد به کم",
+          rating: "بالاترین امتیاز",
+          newest: "جدیدترین",
+        }
+      : {
+          title: "All Timepieces",
+          subtitle:
+            "Our complete collection of luxury watches from the world's finest watchmakers.",
+          breadcrumb: "Products",
+          showing: "Showing",
+          unit: "timepieces",
+          featured: "Featured",
+          priceAsc: "Price: Low to High",
+          priceDesc: "Price: High to Low",
+          rating: "Top Rated",
+          newest: "Newest",
+        };
+
   return (
     <>
       <PageHero
-        title="All Timepieces"
-        subtitle="Our complete collection of luxury watches from the world's finest watchmakers."
-        breadcrumbs={[{ label: 'Products' }]}
+        title={copy.title}
+        subtitle={copy.subtitle}
+        breadcrumbs={[{ label: copy.breadcrumb }]}
       />
 
       <section className="py-16 px-6">
@@ -22,14 +54,14 @@ export default function ProductsPage() {
           {/* Filters Bar */}
           <div className="flex items-center justify-between mb-8">
             <p className="text-sm text-[#D9D9D9]/60">
-              Showing {products.length} timepieces
+              {copy.showing} {products.length} {copy.unit}
             </p>
             <select className="bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-[#4A7BFF]/50">
-              <option value="featured">Featured</option>
-              <option value="price-asc">Price: Low to High</option>
-              <option value="price-desc">Price: High to Low</option>
-              <option value="rating">Top Rated</option>
-              <option value="newest">Newest</option>
+              <option value="featured">{copy.featured}</option>
+              <option value="price-asc">{copy.priceAsc}</option>
+              <option value="price-desc">{copy.priceDesc}</option>
+              <option value="rating">{copy.rating}</option>
+              <option value="newest">{copy.newest}</option>
             </select>
           </div>
 

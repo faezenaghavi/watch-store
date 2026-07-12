@@ -4,7 +4,7 @@ import PageHero from "@/components/PageHero";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 
-// در Next.js 15 و 16، params حتماً باید از نوع Promise باشد
+
 interface Props {
   params: Promise<{ brand: string }>;
 }
@@ -69,19 +69,19 @@ export default async function BrandPage({ params }: Props) {
         <div className="max-w-7xl mx-auto">
           {/* کارت اطلاعات برند */}
           <div className="glass-card rounded-2xl p-8 mb-16 grid grid-cols-1 md:grid-cols-3 gap-8 -mt-20 relative z-20">
-            <div className="text-center md:text-left">
+            <div className="text-center md:text-start">
               <span className="text-xs tracking-[0.2em] uppercase text-[#4A7BFF] block mb-2">
                 Founded
               </span>
               <p className="text-2xl font-bold text-white">{brand.founded}</p>
             </div>
-            <div className="text-center md:text-left border-t md:border-t-0 md:border-x border-white/10 pt-6 md:pt-0">
+            <div className="text-center md:text-start border-t md:border-t-0 md:border-x border-white/10 pt-6 md:pt-0">
               <span className="text-xs tracking-[0.2em] uppercase text-[#4A7BFF] block mb-2">
                 Origin
               </span>
               <p className="text-2xl font-bold text-white">{brand.origin}</p>
             </div>
-            <div className="text-center md:text-right">
+            <div className="text-center md:text-end">
               <span className="text-xs tracking-[0.2em] uppercase text-[#4A7BFF] block mb-2">
                 Collection Size
               </span>

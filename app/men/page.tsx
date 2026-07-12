@@ -7,15 +7,32 @@ export const metadata: Metadata = {
   title: "Men's Watches | CHRONOS",
 };
 
-export default function MenPage() {
+interface MenPageProps {
+  locale?: "en" | "fa";
+}
+
+export default function MenPage({ locale = "en" }: MenPageProps) {
   const products = getProductsByGender('men');
+  const copy =
+    locale === "fa"
+      ? {
+          title: "کالکشن مردانه",
+          subtitle: "مهندسی دقیق و طراحی متمایز برای ساعت‌های مردانه.",
+          breadcrumb: "ساعت مردانه",
+        }
+      : {
+          title: "Men's Collection",
+          subtitle:
+            "Precision engineering meets refined masculinity. Discover timepieces built for distinction.",
+          breadcrumb: "Men's Watches",
+        };
 
   return (
     <>
       <PageHero
-        title="Men's Collection"
-        subtitle="Precision engineering meets refined masculinity. Discover timepieces built for distinction."
-        breadcrumbs={[{ label: "Men's Watches" }]}
+        title={copy.title}
+        subtitle={copy.subtitle}
+        breadcrumbs={[{ label: copy.breadcrumb }]}
       />
 
       <section className="py-16 px-6">

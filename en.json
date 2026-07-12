@@ -1,0 +1,44 @@
+{
+  "Hero": {
+    "tag": "Chronos Collection — 2024",
+    "title1": "Time,",
+    "title2": "Redefined.",
+    "desc": "We don't sell watches. We curate moments that outlive the hands that wear them.",
+    "btn1": "Discover Collection",
+    "btn2": "View Lookbook",
+    "scroll": "Scroll"
+  },
+  "Nav": {
+    "contact": "Contact"
+  },
+  "BrandCategories": {
+    "label": "Browse by Brand",
+    "title": "Legendary Maisons",
+    "subtitle": "Explore timepieces from the world's most prestigious watchmakers. Each brand represents decades of horological excellence."
+  },
+  "AboutSection": {
+    "label": "Our Story",
+    "title": "A Legacy of Precision",
+    "subtitle": "For over two decades, CHRONOS has been the destination for discerning collectors who demand nothing less than perfection.",
+    "statsYears": "Years of Excellence",
+    "statsSold": "Timepieces Sold",
+    "statsBrands": "Luxury Brands",
+    "statsSatisfaction": "Client Satisfaction",
+    "val1Title": "Authenticated",
+    "val1Desc": "Every timepiece is verified by our certified horologists for absolute authenticity.",
+    "val2Title": "Timeless",
+    "val2Desc": "We curate watches that transcend trends — pieces that appreciate with time.",
+    "val3Title": "Exquisite",
+    "val3Desc": "Only the finest materials and most precise movements earn a place in our collection.",
+    "val4Title": "Worldwide",
+    "val4Desc": "Free insured shipping to over 120 countries with white-glove delivery service."
+  },
+    "ProductCard": {
+    "addToCart": "Add to Cart",
+    "inStock": "In stock",
+    "outOfStock": "Out of stock",
+    "newBadge": "New",
+    "limitedBadge": "Limited",
+    "reviews": "({count})"
+  }
+}

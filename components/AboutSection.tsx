@@ -4,52 +4,96 @@
 import { m } from 'framer-motion';
 import { SectionHeading } from './SectionHeading';
 import { HiOutlineShieldCheck, HiOutlineClock, HiOutlineSparkles, HiOutlineGlobe } from 'react-icons/hi';
-
-const stats = [
-  { value: '25+', label: 'Years of Excellence' },
-  { value: '10K+', label: 'Timepieces Sold' },
-  { value: '50+', label: 'Luxury Brands' },
-  { value: '99%', label: 'Client Satisfaction' },
-];
-
-const values = [
-  {
-    icon: HiOutlineShieldCheck,
-    title: 'Authenticated',
-    description: 'Every timepiece is verified by our certified horologists for absolute authenticity.',
-  },
-  {
-    icon: HiOutlineClock,
-    title: 'Timeless',
-    description: 'We curate watches that transcend trends — pieces that appreciate with time.',
-  },
-  {
-    icon: HiOutlineSparkles,
-    title: 'Exquisite',
-    description: 'Only the finest materials and most precise movements earn a place in our collection.',
-  },
-  {
-    icon: HiOutlineGlobe,
-    title: 'Worldwide',
-    description: 'Free insured shipping to over 120 countries with white-glove delivery service.',
-  },
-];
+import { useLocale } from 'next-intl';
 
 export function AboutSection() {
+  const locale = useLocale();
+  const isRTL = locale === 'fa';
+
+  const copy = isRTL
+    ? {
+        label: 'داستان ما',
+        title: 'میراثی از دقت',
+        subtitle:
+          'برای بیش از دو دهه، کرونوس مقصد کلکسیونرهای سخت‌گیری بوده که چیزی کمتر از کمال را نمی‌پذیرند.',
+        stats: [
+          { value: '+۲۵', label: 'سال تعالی' },
+          { value: '+۱۰هزار', label: 'ساعت فروخته‌شده' },
+          { value: '+۵۰', label: 'برند لوکس' },
+          { value: '٪۹۹', label: 'رضایت مشتری' },
+        ],
+        values: [
+          {
+            icon: HiOutlineShieldCheck,
+            title: 'اصالت‌سنجی‌شده',
+            description: 'هر ساعت توسط ساعت‌شناسان معتبر ما برای اطمینان کامل از اصالت بررسی می‌شود.',
+          },
+          {
+            icon: HiOutlineClock,
+            title: 'ماندگار',
+            description: 'ما ساعت‌هایی را گردآوری می‌کنیم که فراتر از مد روز هستند — قطعاتی که با گذر زمان ارزشمندتر می‌شوند.',
+          },
+          {
+            icon: HiOutlineSparkles,
+            title: 'نفیس',
+            description: 'تنها بهترین متریال‌ها و دقیق‌ترین موتورها جایی در کالکشن ما پیدا می‌کنند.',
+          },
+          {
+            icon: HiOutlineGlobe,
+            title: 'جهانی',
+            description: 'ارسال بیمه‌شده رایگان به بیش از ۱۲۰ کشور با خدمات تحویل ویژه.',
+          },
+        ],
+      }
+    : {
+        label: 'Our Story',
+        title: 'A Legacy of Precision',
+        subtitle:
+          'For over two decades, CHRONOS has been the destination for discerning collectors who demand nothing less than perfection.',
+        stats: [
+          { value: '25+', label: 'Years of Excellence' },
+          { value: '10K+', label: 'Timepieces Sold' },
+          { value: '50+', label: 'Luxury Brands' },
+          { value: '99%', label: 'Client Satisfaction' },
+        ],
+        values: [
+          {
+            icon: HiOutlineShieldCheck,
+            title: 'Authenticated',
+            description: 'Every timepiece is verified by our certified horologists for absolute authenticity.',
+          },
+          {
+            icon: HiOutlineClock,
+            title: 'Timeless',
+            description: 'We curate watches that transcend trends — pieces that appreciate with time.',
+          },
+          {
+            icon: HiOutlineSparkles,
+            title: 'Exquisite',
+            description: 'Only the finest materials and most precise movements earn a place in our collection.',
+          },
+          {
+            icon: HiOutlineGlobe,
+            title: 'Worldwide',
+            description: 'Free insured shipping to over 120 countries with white-glove delivery service.',
+          },
+        ],
+      };
+
   return (
     <section className="py-24 px-6 relative overflow-hidden">
-      <div className="absolute top-0 right-0 w-[500px] h-[500px] rounded-full bg-[#4A7BFF] opacity-[0.03] blur-[180px]" />
+      <div className="absolute top-0 end-0 w-[500px] h-[500px] rounded-full bg-[#4A7BFF] opacity-[0.03] blur-[180px]" />
 
       <div className="max-w-7xl mx-auto">
         <SectionHeading
-          label="Our Story"
-          title="A Legacy of Precision"
-          subtitle="For over two decades, CHRONOS has been the destination for discerning collectors who demand nothing less than perfection."
+          label={copy.label}
+          title={copy.title}
+          subtitle={copy.subtitle}
         />
 
         {/* Stats */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-20">
-          {stats.map((stat, i) => (
+          {copy.stats.map((stat, i) => (
             <m.div
               key={stat.label}
               initial={{ opacity: 0, y: 20 }}
@@ -70,7 +114,7 @@ export function AboutSection() {
 
         {/* Values */}
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {values.map((value, i) => (
+          {copy.values.map((value, i) => (
             <m.div
               key={value.title}
               initial={{ opacity: 0, y: 30 }}

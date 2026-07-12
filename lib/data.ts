@@ -52,7 +52,7 @@ export const brands: Brand[] = [
     tagline: "Moving Ahead, Touching Hearts",
     description:
       "Seiko's dedication to innovation has produced world-firsts in watchmaking, from Spring Drive to kinetic technology.",
-    image: "/images/SEIKO.jpeg",
+    image: "/images/seiko1.jpeg",
     founded: 1881,
     origin: "Tokyo, Japan",
     logo: "S",
@@ -124,7 +124,7 @@ export const products: Product[] = [
     rating: 4.9,
     reviews: 324,
     gender: "men",
-    image: "https://picsum.photos/seed/subm1/400/500",
+    image: "/images/rolex1.jpeg",
     description:
       "The quintessential dive watch, the Submariner Date features a 41mm Oystersteel case with a black Cerachrom bezel insert.",
     features: [
@@ -143,7 +143,7 @@ export const products: Product[] = [
     rating: 4.8,
     reviews: 218,
     gender: "men",
-    image: "https://picsum.photos/seed/seam2/400/500",
+    image: "/images/omega1.jpeg",
     description:
       "The Planet Ocean blends diving heritage with contemporary luxury, featuring a titanium case and co-axial movement.",
     features: [
@@ -202,7 +202,7 @@ export const products: Product[] = [
     rating: 4.7,
     reviews: 287,
     gender: "men",
-    image: "https://picsum.photos/seed/pres5/400/500",
+    image: "images/seiko2.jpeg",
     description:
       "The Presage Sharp Edge series showcases Japanese craftsmanship with its textured dial inspired by traditional patterns.",
     features: [
@@ -221,7 +221,7 @@ export const products: Product[] = [
     rating: 4.9,
     reviews: 176,
     gender: "women",
-    image: "https://picsum.photos/seed/djst6/400/500",
+    image: "/images/rolex5.jpeg",
     description:
       "The Datejust 31 in Everose gold with a diamond-set bezel is the epitome of feminine elegance.",
     features: [
@@ -241,7 +241,7 @@ export const products: Product[] = [
     rating: 4.8,
     reviews: 143,
     gender: "women",
-    image: "https://picsum.photos/seed/cons7/400/500",
+    image: "/images/omega2.jpeg",
     description:
       "The Constellation features the iconic claws and polished bezel with Roman numerals in a refined 28mm case.",
     features: [
@@ -260,7 +260,7 @@ export const products: Product[] = [
     rating: 4.5,
     reviews: 321,
     gender: "women",
-    image: "https://picsum.photos/seed/eco8/400/500",
+    image: "images/citizen1.jpeg",
     description:
       "The Eco-Drive Silhouette harnesses any light source for power, wrapped in a sleek minimalist design.",
     features: [
@@ -318,7 +318,7 @@ export const products: Product[] = [
     rating: 4.5,
     reviews: 456,
     gender: "men",
-    image: "https://picsum.photos/seed/bamb11/400/500",
+    image: "/images/orient1.jpeg",
     description:
       "The Bambino is a dress watch icon, featuring a domed crystal and vintage-inspired dial at an unbeatable price.",
     features: [
@@ -438,4 +438,310 @@ export function getFeaturedProducts(): Product[] {
 
 export function getNewArrivals(): Product[] {
   return products.slice(8, 16);
+}
+
+// ─── Persian (fa) Translations ───
+// این بخش صرفاً افزودنی است و آرایه‌های brands/products بالا و توابع کمکی
+// دست‌نخورده باقی مانده‌اند تا هیچ بخش دیگری از پروژه دچار تغییر رفتار نشود.
+// برای نمایش نسخه فارسی، از توابع getLocalizedBrand(s) / getLocalizedProduct(s)
+// در پایین فایل با پاس دادن locale استفاده کنید.
+
+type BrandTranslation = {
+  name: string;
+  tagline: string;
+  description: string;
+  origin: string;
+};
+
+type ProductTranslation = {
+  name: string;
+  description: string;
+  features: string[];
+};
+
+export const brandTranslationsFa: Record<string, BrandTranslation> = {
+  rolex: {
+    name: "رولکس",
+    tagline: "تاجی برای هر دستاورد",
+    description:
+      "رولکس که در سال ۱۹۰۵ تأسیس شد، شناخته‌شده‌ترین برند ساعت لوکس در جهان است؛ مترادف با دقت، اعتبار و طراحی ماندگار.",
+    origin: "ژنو، سوئیس",
+  },
+  omega: {
+    name: "امگا",
+    tagline: "انتخاب اسطوره‌ها",
+    description:
+      "امگا از سال ۱۸۴۸ ساعت‌های استثنایی می‌سازد؛ ساعت‌هایی که کاشفان، فضانوردان و چهره‌های سبک در سراسر جهان بر مچ خود دارند.",
+    origin: "بیل/بین، سوئیس",
+  },
+  tissot: {
+    name: "تیسوت",
+    tagline: "نوآوران به سنت",
+    description:
+      "تیسوت از سال ۱۸۵۳ پیشگام نوآوری در ساعت‌سازی بوده و دقت سوئیسی را در قیمتی مناسب‌تر ارائه می‌دهد.",
+    origin: "لوکل، سوئیس",
+  },
+  casio: {
+    name: "کاسیو",
+    tagline: "خلاقیت و مشارکت",
+    description:
+      "از جی‌شاک نمادین تا ادیفایس شیک، کاسیو با فناوری پیشرفته مفهوم ساعت را بازتعریف می‌کند.",
+    origin: "توکیو، ژاپن",
+  },
+  seiko: {
+    name: "سیکو",
+    tagline: "پیشرو در حرکت، لمس‌کننده قلب‌ها",
+    description:
+      "تعهد سیکو به نوآوری، اولین‌های جهانی در ساعت‌سازی را خلق کرده؛ از اسپرینگ درایو تا فناوری کینتیک.",
+    origin: "توکیو، ژاپن",
+  },
+  citizen: {
+    name: "سیتیزن",
+    tagline: "بهتر، از همین حالا",
+    description:
+      "سیتیزن پیشگام فناوری اکو-درایو بود و ساعت‌های خورشیدی‌ای ساخت که هرگز نیاز به تعویض باتری ندارند.",
+    origin: "توکیو، ژاپن",
+  },
+  orient: {
+    name: "اورینت",
+    tagline: "صنعتگری سنتی، چشم‌انداز مدرن",
+    description:
+      "اورینت استار بهترین نمونه ساعت‌سازی مکانیکی ژاپنی است؛ ترکیبی از سنت و زیبایی‌شناسی معاصر.",
+    origin: "توکیو، ژاپن",
+  },
+  longines: {
+    name: "لونژین",
+    tagline: "ظرافت یک نگرش است",
+    description:
+      "لونژین با بیش از ۱۹۰ سال میراث، ظرافت سنت ساعت‌سازی سوئیس را در خود دارد.",
+    origin: "سنت-ایمیه، سوئیس",
+  },
+  fossil: {
+    name: "فسیل",
+    tagline: "زنده‌باد کلاسیک",
+    description:
+      "فسیل طراحی الهام‌گرفته از سبک قدیمی را با عملکرد مدرن ترکیب می‌کند و سبکی در دسترس برای هر مچی خلق می‌کند.",
+    origin: "ریچاردسون، تگزاس، آمریکا",
+  },
+  tagheuer: {
+    name: "تگ هویر",
+    tagline: "زیر فشار نشکن",
+    description:
+      "روح مسابقه‌ای و آوانگارد تگ هویر، کرونوگراف‌های جسورانه‌ای خلق می‌کند که مرزهای دقت را جابه‌جا می‌کنند.",
+    origin: "لاشو-دو-فون، سوئیس",
+  },
+};
+
+export const productTranslationsFa: Record<string, ProductTranslation> = {
+  "rolex-submariner": {
+    name: "ساب‌مارینر دیت",
+    description:
+      "ساعت غواصی کلاسیک؛ ساب‌مارینر دیت با بدنه ۴۱ میلی‌متری اویستراستیل و بزل سرامیکی مشکی.",
+    features: [
+      "بدنه ۴۱ میلی‌متری اویستراستیل",
+      "موتور کالیبر ۳۲۳۵",
+      "مقاوم در برابر آب تا ۳۰۰ متر",
+      "بزل سرامیکی",
+    ],
+  },
+  "omega-seamaster": {
+    name: "سی‌مستر پلانت اوشن",
+    description:
+      "پلانت اوشن میراث غواصی را با لوکس معاصر ترکیب می‌کند؛ با بدنه‌ای از تیتانیوم و موتور کو-اکسیال.",
+    features: [
+      "بدنه ۴۳.۵ میلی‌متری تیتانیوم",
+      "موتور کالیبر ۸۹۰۰",
+      "مقاوم در برابر آب تا ۶۰۰ متر",
+      "اسکیپمنت کو-اکسیال",
+    ],
+  },
+  "tissot-prx": {
+    name: "پی‌آرایکس پاورماتیک ۸۰",
+    description:
+      "پی‌آرایکس، مدل کلاسیک سال ۱۹۷۸ را با بند یکپارچه امضادار و بدنه بشکه‌ای صاف احیا می‌کند.",
+    features: [
+      "بدنه ۴۰ میلی‌متری استیل",
+      "پاورماتیک ۸۰",
+      "ذخیره انرژی ۸۰ ساعته",
+      "کریستال یاقوت",
+    ],
+  },
+  "casio-gshock": {
+    name: "جی‌شاک ام‌آر-جی",
+    description:
+      "اوج مهندسی جی‌شاک؛ ام‌آر-جی از تیتانیوم و متریال‌های پیشرفته برای مقاومت نهایی بهره می‌برد.",
+    features: [
+      "بدنه تیتانیوم",
+      "شارژ خورشیدی",
+      "مولتی‌بند ۶",
+      "مقاوم در برابر آب تا ۲۰۰ متر",
+    ],
+  },
+  "seiko-presage": {
+    name: "پرزاژ شارپ‌اج",
+    description:
+      "سری پرزاژ شارپ‌اج، صنعتگری ژاپنی را با صفحه‌ای بافت‌دار و الهام‌گرفته از الگوهای سنتی به نمایش می‌گذارد.",
+    features: [
+      "بدنه ۴۰.۵ میلی‌متری استیل",
+      "موتور ۶R35",
+      "ذخیره انرژی ۷۲ ساعته",
+      "صفحه میناکاری",
+    ],
+  },
+  "rolex-datejust": {
+    name: "دیت‌جاست ۳۱",
+    description:
+      "دیت‌جاست ۳۱ با طلای اوروز و بزل الماس‌نشان، نماد ظرافت زنانه است.",
+    features: [
+      "بدنه ۳۱ میلی‌متری اوروز",
+      "موتور کالیبر ۲۲۳۶",
+      "مقاوم در برابر آب تا ۱۰۰ متر",
+      "بزل الماس‌نشان",
+    ],
+  },
+  "omega-constellation": {
+    name: "کنستلیشن",
+    description:
+      "کنستلیشن با چنگک‌های نمادین و بزل صیقلی همراه با اعداد رومی، در بدنه‌ای ظریف ۲۸ میلی‌متری.",
+    features: [
+      "بدنه ۲۸ میلی‌متری استیل و طلا",
+      "موتور کالیبر ۴۰۶۱",
+      "مقاوم در برابر آب تا ۵۰ متر",
+      "صفحه صدف",
+    ],
+  },
+  "citizen-ecodrive": {
+    name: "اکو-درایو سیلوئت",
+    description:
+      "اکو-درایو سیلوئت از هر منبع نوری برای تأمین انرژی بهره می‌برد؛ در طراحی مینیمال و شیک.",
+    features: [
+      "بدنه ۳۲ میلی‌متری استیل",
+      "اکو-درایو",
+      "هرگز نیاز به باتری ندارد",
+      "کریستال یاقوت",
+    ],
+  },
+  "longines-master": {
+    name: "مستر کالکشن",
+    description:
+      "کرونوگراف مستر کالکشن، ساعت‌سازی کلاسیک سوئیس را با صفحه نقره‌ای فلینکه به نمایش می‌گذارد.",
+    features: [
+      "بدنه ۴۲ میلی‌متری استیل",
+      "چرخ ستونی L688",
+      "ذخیره انرژی ۶۶ ساعته",
+      "کرونوگراف",
+    ],
+  },
+  "tagheuer-carrera": {
+    name: "کررا کرونوگراف",
+    description:
+      "متولد پیست مسابقه؛ کررا کرونوگراف دارای موتور داخلی هویر ۰۲ با ذخیره انرژی ۸۰ ساعته است.",
+    features: [
+      "بدنه ۴۴ میلی‌متری استیل",
+      "موتور هویر ۰۲",
+      "ذخیره انرژی ۸۰ ساعته",
+      "بزل تاکی‌متر",
+    ],
+  },
+  "orient-bambino": {
+    name: "اورینت بامبینو",
+    description:
+      "بامبینو نماد ساعت‌های رسمی است؛ با کریستال گنبدی و صفحه‌ای الهام‌گرفته از سبک قدیمی، در قیمتی بی‌رقیب.",
+    features: [
+      "بدنه ۴۰.۵ میلی‌متری استیل",
+      "موتور اتوماتیک F6724",
+      "ذخیره انرژی ۴۰ ساعته",
+      "کریستال گنبدی",
+    ],
+  },
+  "fossil-gen6": {
+    name: "جن ۶ ویینتیج",
+    description:
+      "جن ۶ ویینتیج زیبایی‌شناسی کلاسیک فسیل را با عملکرد هوشمند و روکش رزگلد ترکیب می‌کند.",
+    features: ["بدنه ۴۰ میلی‌متری استیل", "Wear OS", "سنسور ضربان قلب", "GPS داخلی"],
+  },
+  "longines-dolcevita": {
+    name: "دولچه‌ویتا",
+    description:
+      "دولچه‌ویتا سبک زندگی شیرین ایتالیایی را در بدنه‌ای مستطیلی از استیل با جزئیاتی ظریف به تصویر می‌کشد.",
+    features: [
+      "بدنه ۲۳×۳۷ میلی‌متری استیل",
+      "کوارتز L595",
+      "مقاوم در برابر آب تا ۳۰ متر",
+      "اعداد رومی",
+    ],
+  },
+  "omega-aquaterra": {
+    name: "آکوا ترا ۳۸",
+    description:
+      "آکوا ترا میراث دریایی را با صفحه‌ای به الگوی چوب تیک و گواهی مستر کرونومتر ترکیب می‌کند.",
+    features: [
+      "بدنه ۳۸ میلی‌متری استیل",
+      "موتور کالیبر ۸۸۰۰",
+      "مقاوم در برابر آب تا ۱۵۰ متر",
+      "مستر کرونومتر",
+    ],
+  },
+  "rolex-ladydatejust": {
+    name: "لیدی-دیت‌جاست",
+    description:
+      "لیدی-دیت‌جاست با طلای زرد و بند پرزیدنت، نماد نهایی ظرافت زنانه است.",
+    features: [
+      "بدنه ۲۸ میلی‌متری طلای زرد",
+      "موتور کالیبر ۲۲۳۶",
+      "مقاوم در برابر آب تا ۱۰۰ متر",
+      "صفحه جوبیلی",
+    ],
+  },
+  "tagheuer-monaco": {
+    name: "موناکو",
+    description:
+      "موناکوی نمادین با بدنه مربعی، برای همیشه با استیو مک‌کوئین گره‌خورده و دارای موتور کالیبر هویر ۰۲.",
+    features: [
+      "بدنه ۳۹ میلی‌متری استیل",
+      "موتور هویر ۰۲",
+      "ذخیره انرژی ۸۰ ساعته",
+      "بدنه مربعی",
+    ],
+  },
+};
+
+/**
+ * برند را بر اساس locale، در صورت وجود ترجمه، لوکالایز می‌کند.
+ * برای locale های غیر از "fa" یا در نبود ترجمه، همان برند اصلی بازگردانده می‌شود.
+ */
+export function getLocalizedBrand(brand: Brand, locale: string): Brand {
+  if (locale !== "fa") return brand;
+  const t = brandTranslationsFa[brand.id];
+  if (!t) return brand;
+  return {
+    ...brand,
+    name: t.name,
+    tagline: t.tagline,
+    description: t.description,
+    origin: t.origin,
+  };
+}
+
+/**
+ * محصول را بر اساس locale، در صورت وجود ترجمه، لوکالایز می‌کند.
+ */
+export function getLocalizedProduct(product: Product, locale: string): Product {
+  if (locale !== "fa") return product;
+  const t = productTranslationsFa[product.id];
+  if (!t) return product;
+  return {
+    ...product,
+    name: t.name,
+    description: t.description,
+    features: t.features,
+  };
+}
+
+export function getLocalizedBrands(locale: string): Brand[] {
+  return brands.map((b) => getLocalizedBrand(b, locale));
+}
+
+export function getLocalizedProducts(locale: string): Product[] {
+  return products.map((p) => getLocalizedProduct(p, locale));
 }

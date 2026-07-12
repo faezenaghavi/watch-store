@@ -1,4 +1,9 @@
-import { cn } from '@/lib/utils';
+"use client";
+
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { defaultLocale } from "@/lib/i18n";
+import { cn } from "@/lib/utils";
 
 interface BreadcrumbItem {
   label: string;
@@ -8,11 +13,11 @@ interface BreadcrumbItem {
 interface PageHeroProps {
   title: string;
   subtitle?: string;
-  description?: string; 
+  description?: string;
   label?: string;
   breadcrumbs?: BreadcrumbItem[];
   className?: string;
-  align?: 'left' | 'center';
+  align?: "left" | "center";
 }
 
 export default function PageHero({
@@ -22,33 +27,64 @@ export default function PageHero({
   label,
   breadcrumbs,
   className,
-  align = 'center',
+  align = "center",
 }: PageHeroProps) {
+  const pathname = usePathname();
+  const match = pathname?.match(/^\/(en|fa)(?=\/|$)/);
+  const locale = (match && (match[1] as string)) || defaultLocale;
+  const homeHref = locale ? `/${locale}` : "/";
+  const homeLabel = locale === "fa" ? "خانه" : "Home";
+
+  const localize = (href: string) => {
+    if (!href.startsWith("/")) return href;
+    if (!locale) return href;
+    if (/^\/(en|fa)(\/|$)/.test(href)) return href;
+    return href === "/" ? `/${locale}` : `/${locale}${href}`;
+  };
+
   return (
     <div
       className={cn(
-        'pt-28 pb-16 px-4 md:px-8',
-        align === 'center' && 'text-center',
-        className
+        "pt-28 pb-16 px-4 md:px-8",
+        align === "center" && "text-center",
+        className,
       )}
     >
-      {/* Breadcrumbs */}
       {breadcrumbs && breadcrumbs.length > 0 && (
-        <div className="flex items-center justify-center gap-2 text-sm text-[#D9D9D9]/60 mb-6">
-          <a href="/" className="hover:text-white transition-colors">
-            Home
-          </a>
+        <div className="flex flex-wrap items-center justify-center gap-2 text-sm text-[#D9D9D9]/60 mb-6">
+          <Link href={homeHref} className="hover:text-white transition-colors">
+            {homeLabel}
+          </Link>
           <span>/</span>
-          {breadcrumbs.map((crumb, index) => (
-            <span
-              key={index}
-              className={cn(
-                index === breadcrumbs.length - 1 ? 'text-[#4A7BFF]' : 'hover:text-white transition-colors'
-              )}
-            >
-              {crumb.label}
-            </span>
-          ))}
+          {breadcrumbs.map((crumb, index) => {
+            if (crumb.href) {
+              return (
+                <Link
+                  key={index}
+                  href={localize(crumb.href)}
+                  className={cn(
+                    index === breadcrumbs.length - 1
+                      ? "text-[#4A7BFF]"
+                      : "hover:text-white transition-colors",
+                  )}
+                >
+                  {crumb.label}
+                </Link>
+              );
+            }
+            return (
+              <span
+                key={index}
+                className={cn(
+                  index === breadcrumbs.length - 1
+                    ? "text-[#4A7BFF]"
+                    : "hover:text-white transition-colors",
+                )}
+              >
+                {crumb.label}
+              </span>
+            );
+          })}
         </div>
       )}
 
@@ -57,13 +93,13 @@ export default function PageHero({
           {label}
         </p>
       )}
-      
-      <h1 className="text-5xl md:text-6xl font-bold tracking-tight text-gradient">
+
+      <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight text-gradient break-words">
         {title}
       </h1>
-      
+
       {(subtitle || description) && (
-        <p className="text-[#D9D9D9] mt-4 max-w-xl mx-auto font-light leading-relaxed">
+        <p className="text-[#D9D9D9] mt-4 max-w-xl mx-auto font-light leading-relaxed px-2">
           {subtitle || description}
         </p>
       )}

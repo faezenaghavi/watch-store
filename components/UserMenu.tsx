@@ -52,7 +52,7 @@ export function UserMenu() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 8, scale: 0.96 }}
             transition={{ duration: 0.2 }}
-            className="absolute right-0 top-full mt-2 w-56 glass-strong rounded-2xl p-2 luxury-shadow origin-top-right"
+            className="absolute right-0 top-full mt-2 w-56 rounded-2xl p-2 luxury-shadow origin-top-right border border-white/10 bg-[#0e1629]/90 backdrop-blur-2xl"
           >
             <div className="mb-1 border-b border-white/10 px-3 py-3">
               <p className="text-sm font-medium text-white">

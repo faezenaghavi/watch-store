@@ -23,9 +23,9 @@ export default function CartPage() {
               <div className="text-6xl mb-6 opacity-20">🛍️</div>
               <p className="text-xl text-[#D9D9D9]/60 mb-6">Your bag is empty</p>
               <Link href="/products" className="btn-luxury rounded-xl text-white inline-flex items-center gap-2">
-                <HiOutlineArrowLeft className="w-4 h-4" />
-                Continue Shopping
-              </Link>
+  <HiOutlineArrowLeft className="w-4 h-4 rtl:rotate-180" />
+  Continue Shopping
+</Link>
             </div>
           ) : (
             <div className="grid lg:grid-cols-3 gap-8">

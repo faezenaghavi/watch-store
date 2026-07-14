@@ -4,98 +4,37 @@
 import { m } from 'framer-motion';
 import { SectionHeading } from './SectionHeading';
 import { HiOutlineShieldCheck, HiOutlineClock, HiOutlineSparkles, HiOutlineGlobe } from 'react-icons/hi';
-import { useLocale } from 'next-intl';
+import { useTranslations } from 'next-intl';
 
 export function AboutSection() {
-  const locale = useLocale();
-  const isRTL = locale === 'fa';
+  const t = useTranslations('AboutSection');
 
-  const copy = isRTL
-    ? {
-        label: 'داستان ما',
-        title: 'میراثی از دقت',
-        subtitle:
-          'برای بیش از دو دهه، کرونوس مقصد کلکسیونرهای سخت‌گیری بوده که چیزی کمتر از کمال را نمی‌پذیرند.',
-        stats: [
-          { value: '+۲۵', label: 'سال تعالی' },
-          { value: '+۱۰هزار', label: 'ساعت فروخته‌شده' },
-          { value: '+۵۰', label: 'برند لوکس' },
-          { value: '٪۹۹', label: 'رضایت مشتری' },
-        ],
-        values: [
-          {
-            icon: HiOutlineShieldCheck,
-            title: 'اصالت‌سنجی‌شده',
-            description: 'هر ساعت توسط ساعت‌شناسان معتبر ما برای اطمینان کامل از اصالت بررسی می‌شود.',
-          },
-          {
-            icon: HiOutlineClock,
-            title: 'ماندگار',
-            description: 'ما ساعت‌هایی را گردآوری می‌کنیم که فراتر از مد روز هستند — قطعاتی که با گذر زمان ارزشمندتر می‌شوند.',
-          },
-          {
-            icon: HiOutlineSparkles,
-            title: 'نفیس',
-            description: 'تنها بهترین متریال‌ها و دقیق‌ترین موتورها جایی در کالکشن ما پیدا می‌کنند.',
-          },
-          {
-            icon: HiOutlineGlobe,
-            title: 'جهانی',
-            description: 'ارسال بیمه‌شده رایگان به بیش از ۱۲۰ کشور با خدمات تحویل ویژه.',
-          },
-        ],
-      }
-    : {
-        label: 'Our Story',
-        title: 'A Legacy of Precision',
-        subtitle:
-          'For over two decades, CHRONOS has been the destination for discerning collectors who demand nothing less than perfection.',
-        stats: [
-          { value: '25+', label: 'Years of Excellence' },
-          { value: '10K+', label: 'Timepieces Sold' },
-          { value: '50+', label: 'Luxury Brands' },
-          { value: '99%', label: 'Client Satisfaction' },
-        ],
-        values: [
-          {
-            icon: HiOutlineShieldCheck,
-            title: 'Authenticated',
-            description: 'Every timepiece is verified by our certified horologists for absolute authenticity.',
-          },
-          {
-            icon: HiOutlineClock,
-            title: 'Timeless',
-            description: 'We curate watches that transcend trends — pieces that appreciate with time.',
-          },
-          {
-            icon: HiOutlineSparkles,
-            title: 'Exquisite',
-            description: 'Only the finest materials and most precise movements earn a place in our collection.',
-          },
-          {
-            icon: HiOutlineGlobe,
-            title: 'Worldwide',
-            description: 'Free insured shipping to over 120 countries with white-glove delivery service.',
-          },
-        ],
-      };
+  const stats = [
+    { value: '25+', labelKey: 'statsYears' },
+    { value: '10K+', labelKey: 'statsSold' },
+    { value: '50+', labelKey: 'statsBrands' },
+    { value: '99%', labelKey: 'statsSatisfaction' },
+  ] as const;
+
+  const values = [
+    { icon: HiOutlineShieldCheck, titleKey: 'val1Title', descKey: 'val1Desc' },
+    { icon: HiOutlineClock, titleKey: 'val2Title', descKey: 'val2Desc' },
+    { icon: HiOutlineSparkles, titleKey: 'val3Title', descKey: 'val3Desc' },
+    { icon: HiOutlineGlobe, titleKey: 'val4Title', descKey: 'val4Desc' },
+  ] as const;
 
   return (
     <section className="py-24 px-6 relative overflow-hidden">
       <div className="absolute top-0 end-0 w-[500px] h-[500px] rounded-full bg-[#4A7BFF] opacity-[0.03] blur-[180px]" />
 
       <div className="max-w-7xl mx-auto">
-        <SectionHeading
-          label={copy.label}
-          title={copy.title}
-          subtitle={copy.subtitle}
-        />
+        <SectionHeading label={t('label')} title={t('title')} subtitle={t('subtitle')} />
 
         {/* Stats */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-20">
-          {copy.stats.map((stat, i) => (
+          {stats.map((stat, i) => (
             <m.div
-              key={stat.label}
+              key={stat.labelKey}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -106,7 +45,7 @@ export function AboutSection() {
                 {stat.value}
               </span>
               <span className="text-xs tracking-[0.15em] uppercase text-[#D9D9D9]/60">
-                {stat.label}
+                {t(stat.labelKey)}
               </span>
             </m.div>
           ))}
@@ -114,9 +53,9 @@ export function AboutSection() {
 
         {/* Values */}
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {copy.values.map((value, i) => (
+          {values.map((value, i) => (
             <m.div
-              key={value.title}
+              key={value.titleKey}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -127,10 +66,10 @@ export function AboutSection() {
                 <value.icon className="w-5 h-5 text-[#4A7BFF]" />
               </div>
               <h3 className="text-lg font-semibold text-white mb-2" style={{ fontFamily: 'var(--font-space)' }}>
-                {value.title}
+                {t(value.titleKey)}
               </h3>
               <p className="text-sm text-[#D9D9D9]/70 leading-relaxed">
-                {value.description}
+                {t(value.descKey)}
               </p>
             </m.div>
           ))}

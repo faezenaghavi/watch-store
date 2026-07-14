@@ -1,11 +1,14 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { Navbar } from "@/components/Navbar";
-import { Footer } from "@/components/Footer";
-import CartDrawer from "@/components/CartDrawer";
 import { AppProviders } from "@/components/providers/AppProviders";
-import { NextIntlClientProvider } from 'next-intl';
-import { getMessages } from 'next-intl/server';
+import localFont from "next/font/local"; 
+
+// ─── تعریف فونت ایران مارکر ───
+const iranMarker = localFont({
+  src: "./fonts/IRANMarker.ttf",
+  variable: "--font-iran-marker",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   title: {
@@ -16,25 +19,17 @@ export const metadata: Metadata = {
     "Discover the world's finest luxury timepieces. Curated collections from Rolex, Omega, Patek Philippe and more.",
 };
 
-export default async function RootLayout({
+
+export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  // دریافت پیام‌های انگلیسی به عنوان پیش‌فرض برای صفحاتی که زبان ندارند
-  const messages = await getMessages({ locale: 'en' });
-
   return (
-    <html lang="en" data-scroll-behavior="smooth">
-      <body className="font-sans antialiased">
-        <NextIntlClientProvider messages={messages}>
-          <AppProviders>
-            <Navbar />
-            <CartDrawer />
-            <main className="min-h-screen pt-28">{children}</main>
-            <Footer />
-          </AppProviders>
-        </NextIntlClientProvider>
+
+    <html lang="en" className="scroll-smooth" data-scroll-behavior="smooth">
+      <body className={`${iranMarker.variable} font-sans antialiased`}>
+        <AppProviders>{children}</AppProviders>
       </body>
     </html>
   );

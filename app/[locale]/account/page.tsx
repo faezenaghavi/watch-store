@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { useLocale } from "next-intl";
 import {
   Award,
   BellRing,
@@ -21,9 +21,10 @@ export default function AccountPage() {
   const { user } = useStore();
   const displayName = user?.name ?? "Alexander";
 
-  const pathname = usePathname();
-  const match = pathname?.match(/^\/(en|fa)(?=\/|$)/);
-  const locale = (match && match[1]) || "en";
+  // قبلاً locale با regex از pathname استخراج می‌شد. الان که Navbar/Footer/
+  // CartDrawer داخل Provider درست قرار گرفتند، این صفحه هم می‌تواند مستقیم
+  // از next-intl بخواند — منبع واحد برای locale در کل اپ.
+  const locale = useLocale();
   const isRTL = locale === "fa";
 
   const t = isRTL
@@ -55,10 +56,10 @@ export default function AccountPage() {
           { id: "ORD-1184", title: "Cartier Tank Must", status: "تحویل داده شد", time: "۳ روز پیش" },
         ],
         quickLinks: [
-          { title: "سفارش‌ها", description: "پیگیری و مدیریت خریدهای اخیر شما", href: "/account/orders", icon: PackageCheck },
-          { title: "تخفیف‌ها", description: "کدهای اختصاصی و پیشنهادهای ویژه", href: "/account/discounts", icon: Gift },
-          { title: "علاقه‌مندی‌ها", description: "ساعت‌های ذخیره‌شده برای خرید بعدی", href: "/account/wishlist", icon: Heart },
-          { title: "تنظیمات", description: "ویرایش اطلاعات و دسترسی حساب شما", href: "/account/settings", icon: Settings },
+          { title: "سفارش‌ها", description: "پیگیری و مدیریت خریدهای اخیر شما", href: `/${locale}/account/orders`, icon: PackageCheck },
+          { title: "تخفیف‌ها", description: "کدهای اختصاصی و پیشنهادهای ویژه", href: `/${locale}/account/discounts`, icon: Gift },
+          { title: "علاقه‌مندی‌ها", description: "ساعت‌های ذخیره‌شده برای خرید بعدی", href: `/${locale}/account/wishlist`, icon: Heart },
+          { title: "تنظیمات", description: "ویرایش اطلاعات و دسترسی حساب شما", href: `/${locale}/account/settings`, icon: Settings },
         ],
       }
     : {
@@ -89,10 +90,10 @@ export default function AccountPage() {
           { id: "ORD-1184", title: "Cartier Tank Must", status: "Delivered", time: "3 days ago" },
         ],
         quickLinks: [
-          { title: "Orders", description: "Track and manage your recent purchases", href: "/account/orders", icon: PackageCheck },
-          { title: "Discounts", description: "Exclusive codes and special offers", href: "/account/discounts", icon: Gift },
-          { title: "Wishlist", description: "Saved watches for your next purchase", href: "/account/wishlist", icon: Heart },
-          { title: "Settings", description: "Edit your account details and access", href: "/account/settings", icon: Settings },
+          { title: "Orders", description: "Track and manage your recent purchases", href: `/${locale}/account/orders`, icon: PackageCheck },
+          { title: "Discounts", description: "Exclusive codes and special offers", href: `/${locale}/account/discounts`, icon: Gift },
+          { title: "Wishlist", description: "Saved watches for your next purchase", href: `/${locale}/account/wishlist`, icon: Heart },
+          { title: "Settings", description: "Edit your account details and access", href: `/${locale}/account/settings`, icon: Settings },
         ],
       };
 
@@ -166,7 +167,7 @@ export default function AccountPage() {
                 </h2>
               </div>
               <Link
-                href="/account/orders"
+                href={`/${locale}/account/orders`}
                 className="flex items-center gap-2 text-sm text-[#D9D9D9]/70 transition-colors hover:text-white"
               >
                 {t.viewAll}

@@ -6,19 +6,24 @@ import Link from "next/link";
 import { m, AnimatePresence } from "framer-motion";
 import { HiOutlineUser } from "react-icons/hi";
 import { useStore } from "@/store/useStore";
-
-const menuItems = [
-  { label: "My Account", href: "/account" },
-  { label: "Orders", href: "/account/orders" },
-  { label: "Wishlist", href: "/account/wishlist" },
-  { label: "Discounts", href: "/account/discounts" },
-  { label: "Settings", href: "/account/settings" },
-];
+import { useTranslations, useLocale } from "next-intl";
 
 export function UserMenu() {
   const [open, setOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
   const { user, isAuthenticated, signIn, signOut } = useStore();
+
+  const t = useTranslations("UserMenu");
+  const locale = useLocale();
+  const isRTL = locale === "fa";
+
+  const menuItems = [
+    { labelKey: "myAccount", href: `/${locale}/account` },
+    { labelKey: "orders", href: `/${locale}/account/orders` },
+    { labelKey: "wishlist", href: `/${locale}/account/wishlist` },
+    { labelKey: "discounts", href: `/${locale}/account/discounts` },
+    { labelKey: "settings", href: `/${locale}/account/settings` },
+  ] as const;
 
   useEffect(() => {
     const handler = (e: MouseEvent) => {
@@ -52,14 +57,19 @@ export function UserMenu() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 8, scale: 0.96 }}
             transition={{ duration: 0.2 }}
-            className="absolute right-0 top-full mt-2 w-56 rounded-2xl p-2 luxury-shadow origin-top-right border border-white/10 bg-[#0e1629]/90 backdrop-blur-2xl"
+            // در RTL منو باید از سمت چپ باز شود، نه راست
+            className={`absolute top-full mt-2 w-56 rounded-2xl p-2 luxury-shadow border border-white/10 bg-[#0e1629]/90 backdrop-blur-2xl ${
+              isRTL ? "left-0 origin-top-left" : "right-0 origin-top-right"
+            }`}
           >
             <div className="mb-1 border-b border-white/10 px-3 py-3">
               <p className="text-sm font-medium text-white">
-                {isAuthenticated && user ? `Hello, ${user.name}` : "Welcome"}
+                {isAuthenticated && user
+                  ? t("hello", { name: user.name })
+                  : t("welcome")}
               </p>
               <p className="text-xs text-[#D9D9D9]">
-                {isAuthenticated && user ? user.email : "guest@chronos.luxury"}
+                {isAuthenticated && user ? user.email : t("guestEmail")}
               </p>
             </div>
             {menuItems.map((item) => (
@@ -69,7 +79,7 @@ export function UserMenu() {
                 onClick={() => setOpen(false)}
                 className="block px-3 py-2.5 text-sm text-[#D9D9D9] hover:text-white hover:bg-white/5 rounded-xl transition-all"
               >
-                {item.label}
+                {t(item.labelKey)}
               </Link>
             ))}
             <div className="mt-1 border-t border-white/10 pt-1">
@@ -79,9 +89,9 @@ export function UserMenu() {
                     signOut();
                     setOpen(false);
                   }}
-                  className="w-full rounded-xl px-3 py-2.5 text-left text-sm text-red-400 transition-all hover:bg-red-500/10"
+                  className="w-full rounded-xl px-3 py-2.5 text-left text-sm text-red-400 transition-all hover:bg-red-500/10 rtl:text-right"
                 >
-                  Sign Out
+                  {t("signOut")}
                 </button>
               ) : (
                 <button
@@ -89,9 +99,9 @@ export function UserMenu() {
                     signIn();
                     setOpen(false);
                   }}
-                  className="w-full rounded-xl px-3 py-2.5 text-left text-sm text-[#4A7BFF] transition-all hover:bg-[#4A7BFF]/10"
+                  className="w-full rounded-xl px-3 py-2.5 text-left text-sm text-[#4A7BFF] transition-all hover:bg-[#4A7BFF]/10 rtl:text-right"
                 >
-                  Sign In
+                  {t("signIn")}
                 </button>
               )}
             </div>

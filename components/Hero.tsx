@@ -35,10 +35,11 @@ export function Hero() {
     },
   });
 
+  // قبلاً این مقادیر هاردکد انگلیسی بودند با اینکه بقیه Hero از t() استفاده می‌کرد
   const stats = [
-    { value: "500+", label: "Timepieces" },
-    { value: "12", label: "Maisons" },
-    { value: "1920", label: "Since" },
+    { value: "500+", label: t("statTimepieces") },
+    { value: "12", label: t("statMaisons") },
+    { value: "1920", label: t("statSince") },
   ];
 
   return (
@@ -116,13 +117,13 @@ export function Hero() {
           className="flex items-center gap-10 mt-10 md:mt-12"
         >
           <Link
-            href="/products"
+            href={`/${locale}/products`}
             className="btn-primary rounded-xl px-10 py-4 text-white text-[13px]"
           >
             {t('btn1')}
           </Link>
           <Link
-            href="/brands"
+            href={`/${locale}/brands`}
             className="group flex items-center gap-3 text-[12px] text-[#D9D9D9]/35 hover:text-white/70 transition-colors duration-500 tracking-[0.15em] uppercase"
           >
             <span>{t('btn2')}</span>

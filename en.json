@@ -6,7 +6,10 @@
     "desc": "We don't sell watches. We curate moments that outlive the hands that wear them.",
     "btn1": "Discover Collection",
     "btn2": "View Lookbook",
-    "scroll": "Scroll"
+    "scroll": "Scroll",
+    "statTimepieces": "Timepieces",
+    "statMaisons": "Maisons",
+    "statSince": "Since"
   },
   "Nav": {
     "contact": "Contact"
@@ -33,12 +36,72 @@
     "val4Title": "Worldwide",
     "val4Desc": "Free insured shipping to over 120 countries with white-glove delivery service."
   },
-    "ProductCard": {
+  "ProductCard": {
     "addToCart": "Add to Cart",
     "inStock": "In stock",
     "outOfStock": "Out of stock",
     "newBadge": "New",
     "limitedBadge": "Limited",
     "reviews": "({count})"
+  },
+  "FeaturedProducts": {
+    "label": "Our Collection",
+    "title": "Exceptional Timepieces",
+    "subtitle": "Each watch in our collection represents the pinnacle of horological craftsmanship and timeless design.",
+    "tabFeatured": "Featured",
+    "tabNew": "New Arrivals",
+    "viewAll": "View All Timepieces"
+  },
+  "Footer": {
+    "stayInTime": "Stay in Time",
+    "subscribeText": "Subscribe for exclusive previews, new arrivals and insider access.",
+    "emailPlaceholder": "Your email address",
+    "subscribeBtn": "Subscribe",
+    "shopTitle": "Shop",
+    "mensWatches": "Men's Watches",
+    "womensWatches": "Women's Watches",
+    "allProducts": "All Products",
+    "newArrivals": "New Arrivals",
+    "limitedEditions": "Limited Editions",
+    "brandsTitle": "Brands",
+    "allBrands": "All Brands",
+    "companyTitle": "Company",
+    "aboutUs": "About Us",
+    "contact": "Contact",
+    "careers": "Careers",
+    "press": "Press",
+    "sustainability": "Sustainability",
+    "supportTitle": "Support",
+    "faq": "FAQ",
+    "shipping": "Shipping",
+    "returns": "Returns",
+    "warranty": "Warranty",
+    "sizeGuide": "Size Guide",
+    "copyright": "© {year} CHRONOS. All rights reserved."
+  },
+  "CartDrawer": {
+    "title": "Shopping Bag",
+    "emptyTitle": "Your bag is empty",
+    "emptySubtitle": "Explore our collection to find your timepiece.",
+    "subtotal": "Subtotal",
+    "shipping": "Shipping",
+    "complimentary": "Complimentary",
+    "total": "Total",
+    "checkoutBtn": "Proceed to Checkout"
+  },
+  "UserMenu": {
+    "myAccount": "My Account",
+    "orders": "Orders",
+    "wishlist": "Wishlist",
+    "discounts": "Discounts",
+    "settings": "Settings",
+    "hello": "Hello, {name}",
+    "welcome": "Welcome",
+    "guestEmail": "guest@chronos.luxury",
+    "signOut": "Sign Out",
+    "signIn": "Sign In"
+  },
+  "PageHero": {
+    "home": "Home"
   }
 }

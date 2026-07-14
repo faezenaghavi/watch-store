@@ -13,7 +13,7 @@ export const NAV_ITEMS: import('@/types/navigation').NavItem[] = [
   { label: 'Contact', href: '/contact' },
 ];
 
-// نسخه فارسی آیتم‌های ناوبری — برای استفاده در کامپوننت‌هایی که locale فعلی را می‌دانند
+
 export const NAV_ITEMS_FA: import('@/types/navigation').NavItem[] = [
   { label: 'خانه', href: '/' },
   { label: 'ساعت مردانه', href: '/men' },
@@ -23,12 +23,7 @@ export const NAV_ITEMS_FA: import('@/types/navigation').NavItem[] = [
   { label: 'تماس با ما', href: '/contact' },
 ];
 
-/**
- * آیتم‌های ناوبری را بر اساس زبان فعلی برمی‌گرداند.
- * NAV_ITEMS اصلی برای سازگاری با کدهای موجود بدون تغییر باقی مانده است؛
- * کامپوننت‌هایی که می‌خواهند منوی فارسی نمایش دهند باید از این تابع استفاده کنند،
- * مثال: const items = getNavItems(locale);
- */
+
 export function getNavItems(
   locale: string,
 ): import('@/types/navigation').NavItem[] {

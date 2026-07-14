@@ -34,7 +34,7 @@ export default async function LocalePage({ params }: LocalePageProps) {
       <FeaturedProducts />
       <AboutSection />
 
-      {/* 3D Watch Assembly Section */}
+           {/* Video Demo Section */}
       <section className="py-24 px-6 relative">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-12">
@@ -53,7 +53,24 @@ export default async function LocalePage({ params }: LocalePageProps) {
             <div className="luxury-divider mt-8 max-w-xs mx-auto" />
           </div>
 
-          <AssemblySceneLoader />
+          {/* کانتینر ویدیو با استایل لوکس و شیشه‌ای */}
+          <div className="relative max-w-5xl mx-auto aspect-video rounded-3xl overflow-hidden border border-white/10 shadow-2xl luxury-shadow">
+            
+            {/* یک گرادیان ظریف برای ترکیب بهتر لبه‌های ویدیو با بک‌گراند تیره سایت */}
+            <div className="absolute inset-0 bg-gradient-to-t from-[#0E1629]/60 via-transparent to-transparent z-10 pointer-events-none" />
+
+            {/* خود ویدیو */}
+            <video
+              autoPlay
+              loop
+              muted
+              playsInline
+              className="w-full h-full object-cover"
+            >
+              <source src="/videos/watch-demo.mp4" type="video/mp4" />
+              مرورگر شما از پخش ویدیو پشتیبانی نمی‌کند.
+            </video>
+          </div>
         </div>
       </section>
     </>

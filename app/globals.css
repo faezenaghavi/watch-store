@@ -1,7 +1,6 @@
 @import "tailwindcss";
 @reference "tailwindcss";
 
-/* ─── Custom Theme Tokens (Tailwind v4) ─── */
 @theme {
   --color-luxury-navy: #0e1629;
   --color-luxury-navy-light: #1a2342;
@@ -14,6 +13,9 @@
 
   --font-family-display: "Space Grotesk", sans-serif;
   --font-family-body: "Inter", sans-serif;
+
+  /* ✅ 2. استفاده از متغیری که next/font ساخته است */
+  --font-family-persian: var(--font-iran-marker), sans-serif;
 }
 
 /* ─── Base Styles ─── */
@@ -43,6 +45,25 @@
     color: #ffffff;
     font-family: var(--font-family-body);
     overflow-x: hidden;
+  }
+
+  /* ✅ 3. اصلاح سلکتورها: چون dir روی یک div قرار دارد، نباید html را هدف بگیریم */
+  [dir="rtl"] {
+    font-family: var(--font-iran-marker);
+  }
+
+  [dir="rtl"] h1,
+  [dir="rtl"] h2,
+  [dir="rtl"] p,
+  [dir="rtl"] span,
+  [dir="rtl"] label,
+  [dir="rtl"] div,
+  [dir="rtl"] section,
+  [dir="rtl"] h3,
+  [dir="rtl"] h4,
+  [dir="rtl"] h5,
+  [dir="rtl"] h6 {
+    font-family: var(--font-iran-marker);
   }
 
   ::selection {

@@ -1,8 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { defaultLocale } from "@/lib/i18n";
+import { useLocale, useTranslations } from "next-intl";
 import { cn } from "@/lib/utils";
 
 interface BreadcrumbItem {
@@ -29,15 +28,15 @@ export default function PageHero({
   className,
   align = "center",
 }: PageHeroProps) {
-  const pathname = usePathname();
-  const match = pathname?.match(/^\/(en|fa)(?=\/|$)/);
-  const locale = (match && (match[1] as string)) || defaultLocale;
-  const homeHref = locale ? `/${locale}` : "/";
-  const homeLabel = locale === "fa" ? "خانه" : "Home";
+  // قبلاً locale با regex از pathname استخراج می‌شد که یک منبع حقیقت جدا و
+  // غیرقابل‌اعتماد بود. حالا که Navbar/Footer/CartDrawer داخل Provider درست
+  // هستند، PageHero هم می‌تواند مستقیم از next-intl بخواند.
+  const locale = useLocale();
+  const t = useTranslations("PageHero");
+  const homeHref = `/${locale}`;
 
   const localize = (href: string) => {
     if (!href.startsWith("/")) return href;
-    if (!locale) return href;
     if (/^\/(en|fa)(\/|$)/.test(href)) return href;
     return href === "/" ? `/${locale}` : `/${locale}${href}`;
   };
@@ -53,7 +52,7 @@ export default function PageHero({
       {breadcrumbs && breadcrumbs.length > 0 && (
         <div className="flex flex-wrap items-center justify-center gap-2 text-sm text-[#D9D9D9]/60 mb-6">
           <Link href={homeHref} className="hover:text-white transition-colors">
-            {homeLabel}
+            {t("home")}
           </Link>
           <span>/</span>
           {breadcrumbs.map((crumb, index) => {
@@ -105,4 +104,4 @@ export default function PageHero({
       )}
     </div>
   );
-}
+}   

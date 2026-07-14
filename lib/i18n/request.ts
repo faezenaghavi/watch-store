@@ -17,9 +17,10 @@ export default getRequestConfig(async ({ requestLocale }) => {
 
   type Messages = Record<string, unknown>;
 
+ 
   const messageLoaders: Record<Locale, () => Promise<{ default: Messages }>> = {
-    en: () => import("../../en.json"),
-    fa: () => import("../../fa.json"),
+    en: () => import("@/en.json"),
+    fa: () => import("@/fa.json"),
   };
 
   return {

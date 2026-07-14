@@ -2,40 +2,9 @@
 'use client';
 
 import Link from 'next/link';
-import { ROUTES } from '@/lib/routes';
 import { HiOutlineArrowRight } from 'react-icons/hi';
 import { FaInstagram, FaTwitter, FaYoutube, FaPinterestP } from 'react-icons/fa';
-
-const footerLinks = {
-  shop: [
-    { label: "Men's Watches", href: '/men' },
-    { label: "Women's Watches", href: '/women' },
-    { label: 'All Products', href: '/products' },
-    { label: 'New Arrivals', href: '/products?filter=new' },
-    { label: 'Limited Editions', href: '/products?filter=limited' },
-  ],
-  brands: [
-    { label: 'Rolex', href: '/brands/rolex' },
-    { label: 'Omega', href: '/brands/omega' },
-    { label: 'TAG Heuer', href: '/brands/tag-heuer' },
-    { label: 'Seiko', href: '/brands/seiko' },
-    { label: 'All Brands', href: '/brands' },
-  ],
-  company: [
-    { label: 'About Us', href: '/#about' },
-    { label: 'Contact', href: '/contact' },
-    { label: 'Careers', href: '#' },
-    { label: 'Press', href: '#' },
-    { label: 'Sustainability', href: '#' },
-  ],
-  support: [
-    { label: 'FAQ', href: '#' },
-    { label: 'Shipping', href: '#' },
-    { label: 'Returns', href: '#' },
-    { label: 'Warranty', href: '#' },
-    { label: 'Size Guide', href: '#' },
-  ],
-};
+import { useTranslations, useLocale } from 'next-intl';
 
 const socials = [
   { icon: FaInstagram, href: '#', label: 'Instagram' },
@@ -45,6 +14,55 @@ const socials = [
 ];
 
 export function Footer() {
+  const t = useTranslations('Footer');
+  const locale = useLocale();
+  const isRTL = locale === 'fa';
+
+  // کلید ثابت انگلیسی + href — متن نمایشی همیشه از t() می‌آید،
+  // نه از خود متن ترجمه‌شده (که قبلاً به عنوان کلید آبجکت استفاده می‌شد و شکننده بود)
+  const linkGroups = [
+    {
+      titleKey: 'shopTitle',
+      links: [
+        { key: 'mensWatches', href: `/${locale}/men` },
+        { key: 'womensWatches', href: `/${locale}/women` },
+        { key: 'allProducts', href: `/${locale}/products` },
+        { key: 'newArrivals', href: `/${locale}/products?filter=new` },
+        { key: 'limitedEditions', href: `/${locale}/products?filter=limited` },
+      ],
+    },
+    {
+      titleKey: 'brandsTitle',
+      links: [
+        { key: null, label: 'Rolex', href: `/${locale}/brands/rolex` },
+        { key: null, label: 'Omega', href: `/${locale}/brands/omega` },
+        { key: null, label: 'TAG Heuer', href: `/${locale}/brands/tag-heuer` },
+        { key: null, label: 'Seiko', href: `/${locale}/brands/seiko` },
+        { key: 'allBrands', href: `/${locale}/brands` },
+      ],
+    },
+    {
+      titleKey: 'companyTitle',
+      links: [
+        { key: 'aboutUs', href: `/${locale}/#about` },
+        { key: 'contact', href: `/${locale}/contact` },
+        { key: 'careers', href: '#' },
+        { key: 'press', href: '#' },
+        { key: 'sustainability', href: '#' },
+      ],
+    },
+    {
+      titleKey: 'supportTitle',
+      links: [
+        { key: 'faq', href: '#' },
+        { key: 'shipping', href: '#' },
+        { key: 'returns', href: '#' },
+        { key: 'warranty', href: '#' },
+        { key: 'sizeGuide', href: '#' },
+      ],
+    },
+  ] as const;
+
   return (
     <footer className="relative border-t border-white/5">
       <div className="max-w-7xl mx-auto px-6">
@@ -52,23 +70,23 @@ export function Footer() {
         <div className="py-16 border-b border-white/5">
           <div className="max-w-xl mx-auto text-center">
             <h3 className="text-2xl font-bold text-gradient mb-3" style={{ fontFamily: 'var(--font-space)' }}>
-              Stay in Time
+              {t('stayInTime')}
             </h3>
             <p className="text-sm text-[#D9D9D9]/60 mb-6">
-              Subscribe for exclusive previews, new arrivals and insider access.
+              {t('subscribeText')}
             </p>
             <form className="flex gap-3" onSubmit={(e) => e.preventDefault()}>
               <input
                 type="email"
-                placeholder="Your email address"
+                placeholder={t('emailPlaceholder')}
                 className="flex-1 px-5 py-3.5 rounded-xl glass text-white placeholder:text-white/30 text-sm focus:outline-none focus:border-[#4A7BFF]/50 transition-colors"
               />
               <button
                 type="submit"
                 className="btn-primary rounded-xl px-6 text-white flex items-center gap-2"
               >
-                <span className="hidden sm:inline">Subscribe</span>
-                <HiOutlineArrowRight className="w-4 h-4" />
+                <span className="hidden sm:inline">{t('subscribeBtn')}</span>
+                <HiOutlineArrowRight className={`w-4 h-4 ${isRTL ? 'rotate-180' : ''}`} />
               </button>
             </form>
           </div>
@@ -76,19 +94,20 @@ export function Footer() {
 
         {/* Links Grid */}
         <div className="py-16 grid grid-cols-2 md:grid-cols-4 gap-8">
-          {Object.entries(footerLinks).map(([title, links]) => (
-            <div key={title}>
-              <h4 className="text-xs font-medium tracking-[0.2em] uppercase text-white mb-5">
-                {title}
+          {linkGroups.map((group) => (
+            <div key={group.titleKey}>
+              <h4 className={`text-xs font-medium text-white mb-5 ${isRTL ? '' : 'tracking-[0.2em] uppercase'}`}>
+                {t(group.titleKey)}
               </h4>
               <ul className="space-y-3">
-                {links.map((link) => (
-                  <li key={link.label}>
+                {group.links.map((link, linkIndex) => (
+                  <li key={`${group.titleKey}-${link.key ?? (link as { label: string }).label}-${linkIndex}`}>
                     <Link
                       href={link.href}
                       className="text-sm text-[#D9D9D9]/60 hover:text-white transition-colors duration-300"
                     >
-                      {link.label}
+                      {/* بعضی نام‌های برند ترجمه نمی‌شوند (Rolex, Omega...) */}
+                      {link.key ? t(link.key as Parameters<typeof t>[0]) : (link as { label: string }).label}
                     </Link>
                   </li>
                 ))}
@@ -104,7 +123,7 @@ export function Footer() {
               <span className="text-white font-bold text-sm" style={{ fontFamily: 'var(--font-space)' }}>C</span>
             </div>
             <span className="text-sm text-[#D9D9D9]/40">
-              © {new Date().getFullYear()} CHRONOS. All rights reserved.
+              {t('copyright', { year: new Date().getFullYear() })}
             </span>
           </div>
 

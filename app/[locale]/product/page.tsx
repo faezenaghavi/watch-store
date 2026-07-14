@@ -1,18 +1,19 @@
-// app/products/page.tsx
 import { products } from '@/lib/data';
 import { ProductCard } from '@/components/ProductCard';
-import PageHero from "@/components/PageHero"
+import PageHero from "@/components/PageHero";
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'All Products',
 };
 
-interface ProductsPageProps {
-  locale?: "en" | "fa";
-}
+export default async function ProductsPage({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
 
-export default function ProductsPage({ locale = "en" }: ProductsPageProps) {
   const copy =
     locale === "fa"
       ? {
@@ -51,7 +52,6 @@ export default function ProductsPage({ locale = "en" }: ProductsPageProps) {
 
       <section className="py-16 px-6">
         <div className="max-w-7xl mx-auto">
-          {/* Filters Bar */}
           <div className="flex items-center justify-between mb-8">
             <p className="text-sm text-[#D9D9D9]/60">
               {copy.showing} {products.length} {copy.unit}

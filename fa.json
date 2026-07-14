@@ -6,7 +6,10 @@
     "desc": "ما ساعت نمی‌فروشیم. ما لحظاتی را کنار می‌گذاریم که از دستانی که آن‌ها را می‌پوشند، ماندگارترند.",
     "btn1": "مشاهده مجموعه",
     "btn2": "نگاهی به لوك‌بوک",
-    "scroll": "اسکرول"
+    "scroll": "اسکرول",
+    "statTimepieces": "ساعت",
+    "statMaisons": "برند",
+    "statSince": "از سال"
   },
   "Nav": {
     "contact": "تماس با ما"
@@ -33,12 +36,72 @@
     "val4Title": "در سطح جهانی",
     "val4Desc": "ارسال رایگان و بیمه‌شده به بیش از ۱۲۰ کشور با خدمات تحویل ویژه."
   },
-    "ProductCard": {
+  "ProductCard": {
     "addToCart": "افزودن به سبد",
     "inStock": "موجود",
     "outOfStock": "ناموجود",
     "newBadge": "جدید",
     "limitedBadge": "محدود",
     "reviews": "({count})"
+  },
+  "FeaturedProducts": {
+    "label": "کالکشن ما",
+    "title": "ساعت‌های استثنایی",
+    "subtitle": "هر ساعت در کالکشن ما نمایانگر اوج هنر ساعت‌سازی و طراحی ماندگار است.",
+    "tabFeatured": "منتخب",
+    "tabNew": "جدیدترین‌ها",
+    "viewAll": "مشاهده همه ساعت‌ها"
+  },
+  "Footer": {
+    "stayInTime": "همیشه به وقت باشید",
+    "subscribeText": "برای پیش‌نمایش‌های اختصاصی، محصولات جدید و دسترسی ویژه عضو شوید.",
+    "emailPlaceholder": "آدرس ایمیل شما",
+    "subscribeBtn": "عضویت",
+    "shopTitle": "فروشگاه",
+    "mensWatches": "ساعت‌های مردانه",
+    "womensWatches": "ساعت‌های زنانه",
+    "allProducts": "همه محصولات",
+    "newArrivals": "تازه‌ها",
+    "limitedEditions": "نسخه‌های محدود",
+    "brandsTitle": "برندها",
+    "allBrands": "همه برندها",
+    "companyTitle": "شرکت",
+    "aboutUs": "درباره ما",
+    "contact": "تماس با ما",
+    "careers": "فرصت‌های شغلی",
+    "press": "رسانه",
+    "sustainability": "پایداری",
+    "supportTitle": "پشتیبانی",
+    "faq": "سوالات متداول",
+    "shipping": "ارسال",
+    "returns": "بازگشت کالا",
+    "warranty": "گارانتی",
+    "sizeGuide": "راهنمای سایز",
+    "copyright": "© {year} کرونوس. تمامی حقوق محفوظ است."
+  },
+  "CartDrawer": {
+    "title": "سبد خرید",
+    "emptyTitle": "سبد خرید شما خالی است",
+    "emptySubtitle": "از مجموعه ما دیدن کنید تا ساعت مورد نظرتان را پیدا کنید.",
+    "subtotal": "جمع کل",
+    "shipping": "هزینه ارسال",
+    "complimentary": "رایگان",
+    "total": "مبلغ قابل پرداخت",
+    "checkoutBtn": "ادامه فرآیند خرید"
+  },
+  "UserMenu": {
+    "myAccount": "حساب کاربری من",
+    "orders": "سفارش‌ها",
+    "wishlist": "علاقه‌مندی‌ها",
+    "discounts": "تخفیف‌ها",
+    "settings": "تنظیمات",
+    "hello": "سلام، {name}",
+    "welcome": "خوش آمدید",
+    "guestEmail": "guest@chronos.luxury",
+    "signOut": "خروج",
+    "signIn": "ورود"
+  },
+  "PageHero": {
+    "home": "خانه"
   }
 }

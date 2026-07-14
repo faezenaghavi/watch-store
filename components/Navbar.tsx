@@ -187,8 +187,8 @@ export function Navbar() {
         transition={{ duration: 0.5, ease: "easeOut" }}
         className="fixed top-4 left-0 right-0 z-50 transition-all duration-500 pointer-events-auto"
       >
-        <nav
-          className={`max-w-7xl mx-4 md:mx-auto md:px-8 transition-all duration-500 glass-strong rounded-2xl py-4 ${
+               <nav
+          className={`max-w-7xl mx-4 md:mx-auto md:px-8 transition-all duration-500 glass-strong backdrop-blur-3xl bg-white/10 border border-white/20 rounded-2xl py-4 ${
             scrolled ? "luxury-shadow" : ""
           }`}
         >

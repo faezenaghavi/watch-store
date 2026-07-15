@@ -18,14 +18,60 @@ import {
 import { useStore } from "@/store/useStore";
 
 export default function AccountPage() {
-  const { user } = useStore();
+  const { user, orders, wishlist } = useStore();
   const displayName = user?.name ?? "Alexander";
-
-  // قبلاً locale با regex از pathname استخراج می‌شد. الان که Navbar/Footer/
-  // CartDrawer داخل Provider درست قرار گرفتند، این صفحه هم می‌تواند مستقیم
-  // از next-intl بخواند — منبع واحد برای locale در کل اپ.
   const locale = useLocale();
   const isRTL = locale === "fa";
+
+  const toDigits = (n: number, pad = false) => {
+    const raw = pad ? String(n).padStart(2, "0") : n.toLocaleString("en-US");
+    if (!isRTL) return raw;
+    const fa = ["۰", "۱", "۲", "۳", "۴", "۵", "۶", "۷", "۸", "۹"];
+    return raw.replace(/[0-9]/g, (d) => fa[Number(d)]);
+  };
+
+  const timeAgo = (iso: string) => {
+    const diffMs = Date.now() - new Date(iso).getTime();
+    const mins = Math.floor(diffMs / 60000);
+    const hours = Math.floor(mins / 60);
+    const days = Math.floor(hours / 24);
+    if (days > 0) return isRTL ? `${toDigits(days)} روز پیش` : `${days}d ago`;
+    if (hours > 0) return isRTL ? `${toDigits(hours)} ساعت پیش` : `${hours}h ago`;
+    if (mins > 0) return isRTL ? `${toDigits(mins)} دقیقه پیش` : `${mins}m ago`;
+    return isRTL ? "همین الان" : "Just now";
+  };
+
+  const statusLabel = (status: string) => {
+    const map: Record<string, { fa: string; en: string }> = {
+      processing: { fa: "در حال پردازش", en: "Processing" },
+      shipped: { fa: "ارسال شده", en: "Shipped" },
+      delivered: { fa: "تحویل داده شد", en: "Delivered" },
+    };
+    const entry = map[status] ?? map.processing;
+    return isRTL ? entry.fa : entry.en;
+  };
+
+  const recentOrders = orders.slice(0, 3).map((order) => {
+    const firstItem = order.items[0];
+    const extraCount = order.items.length - 1;
+    const title = firstItem
+      ? `${firstItem.product.name}${
+          extraCount > 0
+            ? isRTL
+              ? ` + ${toDigits(extraCount)} مورد دیگر`
+              : ` + ${extraCount} more`
+            : ""
+        }`
+      : order.id;
+    return {
+      id: order.id,
+      title,
+      status: statusLabel(order.status),
+      time: timeAgo(order.date),
+    };
+  });
+
+  const activeOrdersCount = orders.filter((o) => o.status !== "delivered").length;
 
   const t = isRTL
     ? {
@@ -44,16 +90,12 @@ export default function AccountPage() {
         performanceValue: "+۱۲٪",
         membershipDesc:
           "با عضویت VIP از تخفیف‌های ویژه، ارسال سریع‌تر و پشتیبانی اختصاصی بهره‌مند شوید.",
+        ordersEmpty: "هنوز سفارشی ثبت نکرده‌اید.",
         stats: [
-          { label: "سفارش‌های فعال", value: "۰۳", hint: "در حال آماده‌سازی برای ارسال", icon: PackageCheck },
+          { label: "سفارش‌های فعال", value: toDigits(activeOrdersCount, true), hint: "در حال آماده‌سازی برای ارسال", icon: PackageCheck },
           { label: "امتیاز VIP", value: "۲,۴۸۰", hint: "قابل استفاده در سطح VIP شما", icon: Award },
-          { label: "علاقه‌مندی‌ها", value: "۱۲", hint: "ساعت‌های منتخب", icon: Heart },
+          { label: "علاقه‌مندی‌ها", value: toDigits(wishlist.length, true), hint: "ساعت‌های منتخب", icon: Heart },
           { label: "اعلان‌های جدید", value: "۰۴", hint: "پیشنهادهای اختصاصی در انتظار", icon: BellRing },
-        ],
-        orders: [
-          { id: "ORD-2847", title: "Audemars Piguet Royal Oak", status: "امروز تحویل داده شد", time: "۲ ساعت پیش" },
-          { id: "ORD-1921", title: "Rolex Oyster Perpetual", status: "در حال بسته‌بندی", time: "۱ روز پیش" },
-          { id: "ORD-1184", title: "Cartier Tank Must", status: "تحویل داده شد", time: "۳ روز پیش" },
         ],
         quickLinks: [
           { title: "سفارش‌ها", description: "پیگیری و مدیریت خریدهای اخیر شما", href: `/${locale}/account/orders`, icon: PackageCheck },
@@ -78,16 +120,12 @@ export default function AccountPage() {
         performanceValue: "+12%",
         membershipDesc:
           "With VIP membership, you get exclusive discounts, faster delivery, and dedicated concierge support.",
+        ordersEmpty: "You haven't placed any orders yet.",
         stats: [
-          { label: "Active Orders", value: "03", hint: "Preparing for shipment", icon: PackageCheck },
+          { label: "Active Orders", value: toDigits(activeOrdersCount, true), hint: "Preparing for shipment", icon: PackageCheck },
           { label: "VIP Points", value: "2,480", hint: "Available in your VIP tier", icon: Award },
-          { label: "Wishlist", value: "12", hint: "Curated timepieces", icon: Heart },
+          { label: "Wishlist", value: toDigits(wishlist.length, true), hint: "Curated timepieces", icon: Heart },
           { label: "New Alerts", value: "04", hint: "Private offers waiting", icon: BellRing },
-        ],
-        orders: [
-          { id: "ORD-2847", title: "Audemars Piguet Royal Oak", status: "Delivered today", time: "2 hours ago" },
-          { id: "ORD-1921", title: "Rolex Oyster Perpetual", status: "Packing in progress", time: "1 day ago" },
-          { id: "ORD-1184", title: "Cartier Tank Must", status: "Delivered", time: "3 days ago" },
         ],
         quickLinks: [
           { title: "Orders", description: "Track and manage your recent purchases", href: `/${locale}/account/orders`, icon: PackageCheck },
@@ -176,28 +214,34 @@ export default function AccountPage() {
             </div>
 
             <div className="mt-6 space-y-3">
-              {t.orders.map((order) => (
-                <div
-                  key={order.id}
-                  className="flex flex-col gap-3 rounded-2xl border border-white/10 bg-white/5 p-4 sm:flex-row sm:items-center sm:justify-between"
-                >
-                  <div>
-                    <p className="text-sm font-medium text-white">
-                      {order.title}
-                    </p>
-                    <p className="mt-1 text-sm text-[#D9D9D9]/70">{order.id}</p>
+              {recentOrders.length === 0 ? (
+                <p className="text-sm text-[#D9D9D9]/50 py-6 text-center">
+                  {t.ordersEmpty}
+                </p>
+              ) : (
+                recentOrders.map((order) => (
+                  <div
+                    key={order.id}
+                    className="flex flex-col gap-3 rounded-2xl border border-white/10 bg-white/5 p-4 sm:flex-row sm:items-center sm:justify-between"
+                  >
+                    <div>
+                      <p className="text-sm font-medium text-white">
+                        {order.title}
+                      </p>
+                      <p className="mt-1 text-sm text-[#D9D9D9]/70">{order.id}</p>
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <span className="rounded-full border border-[#4A7BFF]/30 bg-[#4A7BFF]/10 px-3 py-1 text-xs text-[#AFC5FF]">
+                        {order.status}
+                      </span>
+                      <span className="flex items-center gap-1 text-sm text-[#D9D9D9]/60">
+                        <Clock3 className="h-4 w-4" />
+                        {order.time}
+                      </span>
+                    </div>
                   </div>
-                  <div className="flex items-center gap-3">
-                    <span className="rounded-full border border-[#4A7BFF]/30 bg-[#4A7BFF]/10 px-3 py-1 text-xs text-[#AFC5FF]">
-                      {order.status}
-                    </span>
-                    <span className="flex items-center gap-1 text-sm text-[#D9D9D9]/60">
-                      <Clock3 className="h-4 w-4" />
-                      {order.time}
-                    </span>
-                  </div>
-                </div>
-              ))}
+                ))
+              )}
             </div>
           </div>
 

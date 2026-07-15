@@ -3,6 +3,7 @@ import { locales, type Locale } from "@/lib/i18n";
 import { products, getLocalizedProduct } from "@/lib/data";
 import ProductGallery from "@/components/ProductGallery";
 import type { Metadata } from "next";
+import ProductActions from "@/components/ProductActions";
 
 export function generateStaticParams() {
   return products.map((product) => ({
@@ -129,14 +130,11 @@ export default async function ProductDetailPage({
               {localized.description}
             </p>
 
-            <div className="flex gap-4">
-              <button className="bg-[#4A7BFF] hover:bg-[#3A6BEE] text-white px-8 py-3.5 rounded-xl font-medium transition-colors flex-1 lg:flex-none">
-                {copy.addToCart}
-              </button>
-              <button className="bg-white/5 border border-white/10 hover:border-white/20 text-white px-6 py-3.5 rounded-xl font-medium transition-colors">
-                {copy.wishlist}
-              </button>
-            </div>
+           <ProductActions
+              product={localized}
+              addToCartLabel={copy.addToCart}
+              wishlistLabel={copy.wishlist}
+            />
           </div>
           
         </div>

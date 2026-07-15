@@ -103,5 +103,38 @@
   },
   "PageHero": {
     "home": "خانه"
+  },
+  "Cart": {
+    "title": "سبد خرید",
+    "breadcrumb": "سبد خرید",
+    "empty": "سبد خرید شما خالی است",
+    "continueShopping": "ادامه خرید",
+    "itemsInBag": "{count} مورد در سبد خرید",
+    "clearAll": "پاک کردن همه",
+    "orderSummary": "خلاصه سفارش",
+    "subtotal": "جمع فرعی",
+    "shipping": "هزینه ارسال",
+    "complimentary": "رایگان",
+    "estimatedTax": "مالیات تخمینی",
+    "total": "مجموع",
+    "checkout": "تکمیل خرید",
+    "wishlistTitle": "لیست علاقه‌مندی",
+    "itemsInWishlist": "{count} مورد ذخیره شده",
+    "wishlistEmpty": "لیست علاقه‌مندی شما خالی است",
+    "moveToCart": "انتقال به سبد"
+  },
+  "WishlistPage": {
+    "label": "حساب من",
+    "title": "لیست علاقه‌مندی",
+    "desc": "محصولاتی که برای بعد ذخیره کرده‌اید. هر وقت آماده بودید به سبد خرید اضافه کنید.",
+    "back": "بازگشت به حساب",
+    "empty": "هنوز موردی ذخیره نشده",
+    "browse": "مشاهده ساعت‌ها",
+    "saved": "ذخیره شده",
+    "addToCart": "افزودن به سبد"
+  },
+  "ProductActions": {
+    "addedToCart": "{name} به سبد خرید اضافه شد",
+    "removedFromWishlist": "{name} از علاقه‌مندی‌ها حذف شد"
   }
 }

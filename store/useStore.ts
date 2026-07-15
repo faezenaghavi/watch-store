@@ -1,9 +1,9 @@
-// store/useStore.ts
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 import { Product } from "@/types/product";
 import { CartItem } from "@/types/cart";
 import { User } from "@/types/user";
+import { Order } from "@/types/order"; // ✅ جدید
 
 interface AppState {
   // Cart
@@ -21,6 +21,10 @@ interface AppState {
   wishlist: string[];
   toggleWishlist: (productId: string) => void;
   isInWishlist: (productId: string) => boolean;
+
+  // ✅ Orders
+  orders: Order[];
+  checkout: () => Order | null;
 
   // Search
   searchOpen: boolean;
@@ -107,6 +111,24 @@ export const useStore = create<AppState>()(
         return get().wishlist.includes(productId);
       },
 
+      // ✅ Orders: تبدیل سبد خرید فعلی به یک سفارش و خالی کردن سبد
+      orders: [],
+      checkout: () => {
+        const { cart, getCartTotal, orders } = get();
+        if (cart.length === 0) return null;
+
+        const newOrder: Order = {
+          id: `ORD-${Date.now().toString().slice(-6)}`,
+          items: cart,
+          total: getCartTotal(),
+          date: new Date().toISOString(),
+          status: "processing",
+        };
+
+        set({ orders: [newOrder, ...orders], cart: [] });
+        return newOrder;
+      },
+
       // Search
       searchOpen: false,
       setSearchOpen: (open) => set({ searchOpen: open }),
@@ -168,6 +190,7 @@ export const useStore = create<AppState>()(
       partialize: (state) => ({
         cart: state.cart,
         wishlist: state.wishlist,
+        orders: state.orders, // ✅ جدید
         user: state.user,
         isAuthenticated: state.isAuthenticated,
       }),

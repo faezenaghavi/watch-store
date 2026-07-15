@@ -4,6 +4,7 @@ import { use } from "react";
 import { brands } from "@/lib/data";
 import Link from "next/link";
 import { m } from "framer-motion";
+import { ArrowLeft } from "lucide-react";
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -28,10 +29,6 @@ const itemVariants = {
   },
 };
 
-// نکته: این یک کامپوننت کلاینت است، پس params یک Promise است که با
-// هوک `use` آن‌رول می‌شود (الگوی رسمی Next.js 15 برای client page ها).
-// قبلاً locale یک prop اختیاری با مقدار پیش‌فرض "en" بود که هیچ‌وقت
-// توسط Next.js پر نمی‌شد.
 export default function BrandsPage({
   params,
 }: {
@@ -47,6 +44,8 @@ export default function BrandsPage({
         description:
           "معتبرترین ساعت‌سازان جهان را کشف کنید. هر برند نمایانگر میراثی از تعالی، نوآوری و طراحی ماندگار است.",
         explore: "مشاهده کالکشن",
+        home: "خانه",
+        brands: "برندها",
       }
     : {
         label: "Our Partners",
@@ -54,6 +53,8 @@ export default function BrandsPage({
         description:
           "Explore the world's most prestigious watchmakers. Each brand represents a legacy of excellence, innovation, and timeless design.",
         explore: "Explore Collection",
+        home: "Home",
+        brands: "Brands",
       };
 
   return (
@@ -66,6 +67,25 @@ export default function BrandsPage({
         />
         <div className="absolute inset-0 bg-gradient-to-t from-[#0E1629] via-[#0E1629]/70 to-transparent" />
         <div className="absolute inset-0 bg-gradient-to-r from-[#0E1629]/40 via-transparent to-[#0E1629]/40" />
+
+               {/* ── مسیر بازگشت ── */}
+        <div className="absolute top-0 start-0 end-0 z-20 px-6 pt-28">
+          <div className="max-w-7xl mx-auto flex justify-center">
+            <nav className="flex items-center gap-2 text-sm text-[#D9D9D9]/50">
+              <Link
+                href={`/${locale}`}
+                className="inline-flex items-center gap-1.5 hover:text-[#4A7BFF] transition-colors"
+              >
+                <ArrowLeft
+                  className={`w-3.5 h-3.5 ${isRTL ? "rotate-180" : ""}`}
+                />
+                {copy.home}
+              </Link>
+              <span className="text-[#D9D9D9]/20">/</span>
+              <span className="text-[#D9D9D9]/80">{copy.brands}</span>
+            </nav>
+          </div>
+        </div>
 
         <div className="relative z-10 text-center px-6 max-w-4xl mx-auto">
           <m.p

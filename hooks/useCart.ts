@@ -12,6 +12,7 @@ export function useCart() {
   const clearCart = useStore((s) => s.clearCart);
   const getCartTotal = useStore((s) => s.getCartTotal);
   const getCartCount = useStore((s) => s.getCartCount);
+  const checkout = useStore((s) => s.checkout);
 
   return {
     cart: cart as CartItem[],
@@ -21,6 +22,7 @@ export function useCart() {
     updateQuantity: (productId: string, quantity: number) =>
       updateQuantity(productId, quantity),
     clearCart,
+    checkout,
     total: getCartTotal(),
     count: getCartCount(),
   };

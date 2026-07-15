@@ -28,9 +28,6 @@ export default function PageHero({
   className,
   align = "center",
 }: PageHeroProps) {
-  // قبلاً locale با regex از pathname استخراج می‌شد که یک منبع حقیقت جدا و
-  // غیرقابل‌اعتماد بود. حالا که Navbar/Footer/CartDrawer داخل Provider درست
-  // هستند، PageHero هم می‌تواند مستقیم از next-intl بخواند.
   const locale = useLocale();
   const t = useTranslations("PageHero");
   const homeHref = `/${locale}`;

@@ -6,8 +6,8 @@ import { NextIntlClientProvider } from "next-intl";
 import { getMessages, setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
 import { locales, type Locale } from "@/lib/i18n";
+import { ToastProvider } from "@/components/Toast";
 
-// تولید صفحات استاتیک برای هر زبان
 export function generateStaticParams() {
   return locales.map((locale) => ({ locale }));
 }
@@ -29,17 +29,17 @@ export default async function LocaleLayout({
   const dir = locale === "fa" ? "rtl" : "ltr";
 
   return (
-    // این div مرجع "dir" برای کلاس‌های rtl: تیلویند است.
-    // نکته مهم: Navbar / CartDrawer / Footer اینجا، داخل همین Provider
-    // و همین dir قرار گرفتند تا locale درست را ببینند (قبلاً بیرون بودند و باگ اصلی همین بود).
-    <div className={dir} dir={dir} lang={locale}>
-      <NextIntlClientProvider messages={messages} locale={locale}>
-        <LoadingScreen />
-        <Navbar />
-        <CartDrawer />
-        <main className="min-h-screen pt-28">{children}</main>
-        <Footer />
-      </NextIntlClientProvider>
-    </div>
+    <ToastProvider>
+     
+      <div dir={dir} className={dir}>
+        <NextIntlClientProvider messages={messages} locale={locale}>
+          <LoadingScreen />
+          <Navbar />
+          <CartDrawer />
+          <main className="min-h-screen pt-28">{children}</main>
+          <Footer />
+        </NextIntlClientProvider>
+      </div>
+    </ToastProvider>
   );
 }

@@ -253,6 +253,9 @@ export function Navbar() {
                   <m.span
                     initial={{ scale: 0 }}
                     animate={{ scale: 1 }}
+                    lang="en"
+                    dir="ltr"
+                    style={{ fontFeatureSettings: '"locl" 0, "tnum" 1' }}
                     className="absolute -top-0.5 -right-0.5 w-5 h-5 bg-[#4A7BFF] rounded-full text-[10px] font-bold flex items-center justify-center text-white"
                   >
                     {cartCount}
@@ -512,7 +515,11 @@ export function Navbar() {
                   className="block px-4 py-3 text-[#D9D9D9] hover:text-white hover:bg-white/5 rounded-xl transition-all"
                 >
                   {getNavLabel("wishlist", "Wishlist")}{" "}
-                  {mounted && wishlist.length > 0 && `(${wishlist.length})`}
+                  {mounted && wishlist.length > 0 && (
+                    <span lang="en" dir="ltr" style={{ fontFeatureSettings: '"locl" 0, "tnum" 1' }}>
+                      ({wishlist.length})
+                    </span>
+                  )}
                 </Link>
                 <Link
                   href={localize("/account")}

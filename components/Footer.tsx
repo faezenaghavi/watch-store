@@ -1,4 +1,3 @@
-// components/Footer.tsx
 'use client';
 
 import Link from 'next/link';
@@ -18,8 +17,6 @@ export function Footer() {
   const locale = useLocale();
   const isRTL = locale === 'fa';
 
-  // کلید ثابت انگلیسی + href — متن نمایشی همیشه از t() می‌آید،
-  // نه از خود متن ترجمه‌شده (که قبلاً به عنوان کلید آبجکت استفاده می‌شد و شکننده بود)
   const linkGroups = [
     {
       titleKey: 'shopTitle',
@@ -66,10 +63,14 @@ export function Footer() {
   return (
     <footer className="relative border-t border-white/5">
       <div className="max-w-7xl mx-auto px-6">
-        {/* Newsletter */}
+
+        {/* ── Newsletter: بدون بک‌گراند ── */}
         <div className="py-16 border-b border-white/5">
           <div className="max-w-xl mx-auto text-center">
-            <h3 className="text-2xl font-bold text-gradient mb-3" style={{ fontFamily: 'var(--font-space)' }}>
+            <h3
+              className="text-2xl font-bold text-gradient mb-3"
+              style={{ fontFamily: 'var(--font-space)' }}
+            >
               {t('stayInTime')}
             </h3>
             <p className="text-sm text-[#D9D9D9]/60 mb-6">
@@ -86,58 +87,107 @@ export function Footer() {
                 className="btn-primary rounded-xl px-6 text-white flex items-center gap-2"
               >
                 <span className="hidden sm:inline">{t('subscribeBtn')}</span>
-                <HiOutlineArrowRight className={`w-4 h-4 ${isRTL ? 'rotate-180' : ''}`} />
+                <HiOutlineArrowRight
+                  className={`w-4 h-4 ${isRTL ? 'rotate-180' : ''}`}
+                />
               </button>
             </form>
           </div>
         </div>
+      </div>
 
-        {/* Links Grid */}
-        <div className="py-16 grid grid-cols-2 md:grid-cols-4 gap-8">
-          {linkGroups.map((group) => (
-            <div key={group.titleKey}>
-              <h4 className={`text-xs font-medium text-white mb-5 ${isRTL ? '' : 'tracking-[0.2em] uppercase'}`}>
-                {t(group.titleKey)}
-              </h4>
-              <ul className="space-y-3">
-                {group.links.map((link, linkIndex) => (
-                  <li key={`${group.titleKey}-${link.key ?? (link as { label: string }).label}-${linkIndex}`}>
-                    <Link
-                      href={link.href}
-                      className="text-sm text-[#D9D9D9]/60 hover:text-white transition-colors duration-300"
+      {/* ── لینک‌ها و کپی‌رایت: با بک‌گراند ساعت ── */}
+      <div className="relative overflow-hidden">
+        <img
+          src="https://images.unsplash.com/photo-1523170335258-f5ed11844a49?w=1200&q=80"
+          alt=""
+          className="absolute inset-0 w-full h-full object-cover"
+          aria-hidden="true"
+        />
+        <div
+          className="absolute inset-0"
+          style={{
+            background:
+              'linear-gradient(135deg, rgba(11,17,32,0.94) 0%, rgba(14,22,41,0.9) 50%, rgba(11,17,32,0.94) 100%)',
+          }}
+        />
+        <div
+          className="absolute w-72 h-72 rounded-full blur-[100px] opacity-15 pointer-events-none"
+          style={{
+            background: 'radial-gradient(circle, rgba(74,123,255,0.6) 0%, transparent 70%)',
+            bottom: '-20%',
+            left: '-5%',
+          }}
+        />
+        <div
+          className="absolute w-56 h-56 rounded-full blur-[80px] opacity-10 pointer-events-none"
+          style={{
+            background: 'radial-gradient(circle, rgba(212,165,116,0.5) 0%, transparent 60%)',
+            top: '-15%',
+            right: '5%',
+          }}
+        />
+
+        <div className="relative z-10 max-w-7xl mx-auto px-6">
+          <div className="py-16 grid grid-cols-2 md:grid-cols-4 gap-8">
+            {linkGroups.map((group) => (
+              <div key={group.titleKey}>
+                <h4
+                  className={`text-xs font-medium text-white mb-5 ${
+                    isRTL ? '' : 'tracking-[0.2em] uppercase'
+                  }`}
+                >
+                  {t(group.titleKey)}
+                </h4>
+                <ul className="space-y-3">
+                  {group.links.map((link, linkIndex) => (
+                    <li
+                      key={`${group.titleKey}-${
+                        link.key ?? (link as { label: string }).label
+                      }-${linkIndex}`}
                     >
-                      {/* بعضی نام‌های برند ترجمه نمی‌شوند (Rolex, Omega...) */}
-                      {link.key ? t(link.key as Parameters<typeof t>[0]) : (link as { label: string }).label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
-        </div>
-
-        {/* Bottom */}
-        <div className="py-8 border-t border-white/5 flex flex-col md:flex-row items-center justify-between gap-4">
-          <div className="flex items-center gap-3">
-            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-[#4A7BFF] to-[#3360DD] flex items-center justify-center">
-              <span className="text-white font-bold text-sm" style={{ fontFamily: 'var(--font-space)' }}>C</span>
-            </div>
-            <span className="text-sm text-[#D9D9D9]/40">
-              {t('copyright', { year: new Date().getFullYear() })}
-            </span>
+                      <Link
+                        href={link.href}
+                        className="text-sm text-[#D9D9D9]/60 hover:text-white transition-colors duration-300"
+                      >
+                        {link.key
+                          ? t(link.key as Parameters<typeof t>[0])
+                          : (link as { label: string }).label}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
           </div>
 
-          <div className="flex items-center gap-3">
-            {socials.map((social) => (
-              <a
-                key={social.label}
-                href={social.href}
-                className="w-9 h-9 rounded-xl glass flex items-center justify-center text-[#D9D9D9]/60 hover:text-white hover:bg-white/10 transition-all"
-                aria-label={social.label}
-              >
-                <social.icon className="w-4 h-4" />
-              </a>
-            ))}
+          <div className="py-8 border-t border-white/5 flex flex-col md:flex-row items-center justify-between gap-4">
+            <div className="flex items-center gap-3">
+              <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-[#4A7BFF] to-[#3360DD] flex items-center justify-center">
+                <span
+                  className="text-white font-bold text-sm"
+                  style={{ fontFamily: 'var(--font-space)' }}
+                >
+                  C
+                </span>
+              </div>
+              <span className="text-sm text-[#D9D9D9]/40">
+                {t('copyright', { year: new Date().getFullYear() })}
+              </span>
+            </div>
+
+            <div className="flex items-center gap-3">
+              {socials.map((social) => (
+                <a
+                  key={social.label}
+                  href={social.href}
+                  className="w-9 h-9 rounded-xl glass flex items-center justify-center text-[#D9D9D9]/60 hover:text-white hover:bg-white/10 transition-all"
+                  aria-label={social.label}
+                >
+                  <social.icon className="w-4 h-4" />
+                </a>
+              ))}
+            </div>
           </div>
         </div>
       </div>

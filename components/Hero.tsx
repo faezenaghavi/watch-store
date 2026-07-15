@@ -61,16 +61,14 @@ export function Hero() {
         <div className="absolute inset-0 bg-gradient-to-t from-transparent via-[#0E1629]/10 to-transparent z-0" />
       </div>
 
-      {/* ─── Ambient Glow ─── */}
+    
       <div className="absolute top-1/2 left-1/3 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] rounded-full bg-[#4A7BFF] opacity-[0.05] blur-[200px] z-0" />
 
-      {/* ─── Left Vertical Accent ─── */}
       <m.div
         {...fadeUp(0)}
         className="absolute left-8 md:left-16 rtl:left-auto rtl:right-8 rtl:md:right-16 top-[18%] bottom-[18%] w-px bg-gradient-to-b from-transparent via-[#4A7BFF]/20 to-transparent z-10"
       />
 
-      {/* ─── Main Content ─── */}
       <div className="relative z-10 px-8 md:px-16 lg:px-24 w-full max-w-5xl">
         <m.div {...fadeRight(0.3)}>
           <div className="flex items-center gap-4">
@@ -134,7 +132,6 @@ export function Hero() {
         </m.div>
       </div>
 
-      {/* ─── Right Side: Stats + Geometric Element ─── */}
       <m.div
         {...scaleIn(1.9)}
         className="hidden md:flex absolute right-16 lg:right-24 top-1/2 -translate-y-1/2 z-10 flex-col items-center gap-8"
@@ -158,7 +155,7 @@ export function Hero() {
           </div>
         </div>
 
-        {/* ─── مخفی کردن این بخش فقط در حالت فارسی ─── */}
+    
         {!isRTL && (
           <div className="flex flex-col items-center gap-5">
             {stats.map((stat, i) => (
@@ -194,7 +191,6 @@ export function Hero() {
         )}
       </m.div>
 
-      {/* ─── Scroll Indicator ─── */}
       <m.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}

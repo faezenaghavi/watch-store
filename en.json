@@ -103,5 +103,38 @@
   },
   "PageHero": {
     "home": "Home"
+  },
+  "Cart": {
+    "title": "Shopping Bag",
+    "breadcrumb": "Cart",
+    "empty": "Your bag is empty",
+    "continueShopping": "Continue Shopping",
+    "itemsInBag": "{count, plural, =0 {No items} =1 {1 item} other {# items}} in your bag",
+    "clearAll": "Clear All",
+    "orderSummary": "Order Summary",
+    "subtotal": "Subtotal",
+    "shipping": "Shipping",
+    "complimentary": "Complimentary",
+    "estimatedTax": "Estimated Tax",
+    "total": "Total",
+    "checkout": "Proceed to Checkout",
+    "wishlistTitle": "Wishlist",
+    "itemsInWishlist": "{count, plural, =0 {No items} =1 {1 item} other {# items}} saved",
+    "wishlistEmpty": "Your wishlist is empty",
+    "moveToCart": "Move to Cart"
+  },
+  "WishlistPage": {
+    "label": "My Account",
+    "title": "Wishlist",
+    "desc": "Items you've saved for later. Move them to your bag when you're ready.",
+    "back": "Back to Account",
+    "empty": "No saved items yet",
+    "browse": "Browse Watches",
+    "saved": "Saved",
+    "addToCart": "Add to Bag"
+  },
+  "ProductActions": {
+    "addedToCart": "{name} added to bag",
+    "removedFromWishlist": "{name} removed from wishlist"
   }
 }

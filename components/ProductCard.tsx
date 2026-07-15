@@ -5,6 +5,7 @@ import Link from "next/link";
 import { Product } from "@/types/product";
 import { useCart } from "@/hooks/useCart";
 import { useStore } from "@/store/useStore";
+import { useToast } from "@/components/Toast";
 import { formatPrice, formatDiscount } from "@/lib/format";
 import {
   HiHeart,
@@ -25,11 +26,13 @@ export function ProductCard({
   index = 0,
   showDetails = false,
 }: ProductCardProps) {
-  const t = useTranslations('ProductCard');
+  const t = useTranslations("ProductCard");
+  const tActions = useTranslations("ProductActions");
   const locale = useLocale();
 
   const { addToCart } = useCart();
   const { toggleWishlist, wishlist } = useStore();
+  const { showToast } = useToast();
   const isWishlisted = wishlist.includes(product.id);
 
   const productName = product.name || product.id;
@@ -37,6 +40,23 @@ export function ProductCard({
   const productFeatures = product.features ?? [];
 
   const productHref = `/${locale}/products/${product.slug ?? product.id}`;
+
+  const handleAddToCart = (e: React.MouseEvent) => {
+    e.preventDefault();
+    addToCart(product);
+    showToast(tActions("addedToCart", { name: productName }));
+  };
+
+  const handleToggleWishlist = (e: React.MouseEvent) => {
+    e.preventDefault();
+    const wasWishlisted = isWishlisted;
+    toggleWishlist(product.id);
+    showToast(
+      wasWishlisted
+        ? tActions("removedFromWishlist", { name: productName })
+        : tActions("addedToWishlist", { name: productName }),
+    );
+  };
 
   return (
     <m.div
@@ -83,12 +103,12 @@ export function ProductCard({
             )}
             {product.isNew && (
               <span className="px-2.5 py-1 text-[10px] font-bold tracking-wider ltr:uppercase bg-[#4A7BFF] text-white rounded-lg">
-                {t('newBadge')}
+                {t("newBadge")}
               </span>
             )}
             {product.isLimited && (
               <span className="px-2.5 py-1 text-[10px] font-bold tracking-wider ltr:uppercase bg-amber-500/90 text-white rounded-lg">
-                {t('limitedBadge')}
+                {t("limitedBadge")}
               </span>
             )}
           </div>
@@ -96,10 +116,7 @@ export function ProductCard({
           {/* Actions */}
           <div className="absolute top-3 end-3 z-20 flex flex-col gap-2">
             <button
-              onClick={(e) => {
-                e.preventDefault();
-                toggleWishlist(product.id);
-              }}
+              onClick={handleToggleWishlist}
               className="w-9 h-9 rounded-xl glass flex items-center justify-center text-white hover:bg-white/10 transition-all"
               aria-label="Toggle wishlist"
             >
@@ -114,14 +131,11 @@ export function ProductCard({
           {/* Quick Add */}
           <div className="absolute bottom-0 start-0 end-0 z-20 p-3 translate-y-full group-hover:translate-y-0 transition-transform duration-300">
             <button
-              onClick={(e) => {
-                e.preventDefault();
-                addToCart(product);
-              }}
+              onClick={handleAddToCart}
               className="w-full py-3 rounded-xl glass-strong text-white text-xs font-medium tracking-wider ltr:uppercase flex items-center justify-center gap-2 hover:bg-white/20 transition-all"
             >
               <HiOutlineShoppingBag className="w-4 h-4" />
-              {t('addToCart')}
+              {t("addToCart")}
             </button>
           </div>
         </div>
@@ -143,7 +157,7 @@ export function ProductCard({
               <HiStar className="w-3.5 h-3.5 text-amber-400" />
               <span className="text-xs text-[#D9D9D9]">{product.rating}</span>
               <span className="text-xs text-[#D9D9D9]/40">
-                {t('reviews', { count: product.reviews })}
+                {t("reviews", { count: product.reviews })}
               </span>
             </div>
 
@@ -176,8 +190,7 @@ export function ProductCard({
                 </div>
 
                 <div className="flex items-center justify-between text-xs text-[#D9D9D9]/60">
-                  <span>{product.inStock ? t('inStock') : t('outOfStock')}</span>
-                  {/* capitalize در فارسی کار نمی‌کند، پس فقط برای انگلیسی فعال شد */}
+                  <span>{product.inStock ? t("inStock") : t("outOfStock")}</span>
                   <span className="ltr:capitalize">{product.gender}</span>
                 </div>
               </div>

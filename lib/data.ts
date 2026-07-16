@@ -8,7 +8,7 @@ export const brands: Brand[] = [
     tagline: "A Crown for Every Achievement",
     description:
       "Founded in 1905, Rolex is the world's most recognized luxury watch brand, synonymous with precision, prestige, and timeless design.",
-    image: "/public/images/Rolex.jpeg",
+    image: "/images/Rolex.jpeg",
     founded: 1905,
     origin: "Geneva, Switzerland",
     logo: "♛",
@@ -223,7 +223,7 @@ export const products: Product[] = [
     rating: 4.5,
     reviews: 321,
     gender: "women",
-    image: "images/citizen1.jpeg",
+    image: "/images/citizen4.jpeg",
     description:
       "The Eco-Drive Silhouette harnesses any light source for power, wrapped in a sleek minimalist design.",
     features: [
@@ -262,7 +262,7 @@ export const products: Product[] = [
     rating: 4.3,
     reviews: 534,
     gender: "women",
-    image: "https://picsum.photos/seed/fos12/400/500",
+    image: "/images/Fossil1.jpeg",
     description:
       "The Gen 6 Vintage blends classic Fossil aesthetics with smart functionality and a rose gold finish.",
     features: ["40mm Steel", "Wear OS", "Heart Rate Monitor", "GPS Built-in"],
@@ -276,7 +276,7 @@ export const products: Product[] = [
     rating: 4.6,
     reviews: 112,
     gender: "women",
-    image: "https://picsum.photos/seed/dolc13/400/500",
+    image: "/images/longines2.jpeg",
     description:
       "The DolceVita captures the sweet Italian lifestyle in a rectangular steel case with refined details.",
     features: [
@@ -296,7 +296,7 @@ export const products: Product[] = [
     rating: 4.7,
     reviews: 98,
     gender: "men",
-    image: "https://picsum.photos/seed/mast9/400/500",
+    image: "/images/longines3.jpeg",
     description:
       "The Master Collection chronograph embodies classical Swiss watchmaking with its silver flinqué dial.",
     features: [
@@ -315,7 +315,7 @@ export const products: Product[] = [
     rating: 4.8,
     reviews: 267,
     gender: "men",
-    image: "https://picsum.photos/seed/carr10/400/500",
+    image: "/images/tagheuer1.jpeg",
     description:
       "Born on the racetrack, the Carrera Chronograph features the Heuer 02 in-house movement with 80-hour power reserve.",
     features: [
@@ -335,7 +335,7 @@ export const products: Product[] = [
     rating: 4.7,
     reviews: 512,
     gender: "men",
-    image: "https://picsum.photos/seed/prx3/400/500",
+    image: "/images/tissot1.jpeg",
     description:
       "The PRX revives the 1978 classic with its signature integrated bracelet and flat barrel case.",
     features: [
@@ -354,7 +354,7 @@ export const products: Product[] = [
     rating: 4.6,
     reviews: 189,
     gender: "men",
-    image: "https://picsum.photos/seed/gshk4/400/500",
+    image: "/images/casio1.jpeg",
     description:
       "The pinnacle of G-Shock engineering, the MR-G uses titanium and advanced materials for ultimate toughness.",
     features: [
@@ -373,7 +373,7 @@ export const products: Product[] = [
     rating: 4.8,
     reviews: 195,
     gender: "men",
-    image: "https://picsum.photos/seed/aqua14/400/500",
+    image: "/images/omega3.jpeg",
     description:
       "The Aqua Terra combines maritime heritage with a teak-pattern dial and Master Chronometer certification.",
     features: [
@@ -412,7 +412,7 @@ export const products: Product[] = [
     rating: 4.9,
     reviews: 156,
     gender: "men",
-    image: "https://picsum.photos/seed/mona16/400/500",
+    image: "/images/tagheuer2.jpeg",
     description:
       "The iconic square-cased Monaco, forever linked to Steve McQueen, features the Calibre Heuer 02 movement.",
     features: ["39mm Steel", "Heuer 02", "80h Power Reserve", "Square Case"],
@@ -427,7 +427,7 @@ export const products: Product[] = [
     rating: 4.9,
     reviews: 412,
     gender: "men",
-    image: "/images/rolex-daytona.jpeg",
+    image: "/images/rolex6.jpeg",
     description:
       "A legendary chronograph inspired by motorsport performance, with a clean dial and precise timing functions.",
     features: ["40mm Oystersteel", "Automatic Chronograph", "100m Water Resistant", "Cerachrom Bezel"],
@@ -441,7 +441,7 @@ export const products: Product[] = [
     rating: 4.9,
     reviews: 298,
     gender: "men",
-    image: "/images/rolex-gmtmaster2.jpeg",
+    image: "/images/rolex7.jpeg",
     description:
       "Designed for travelers, this GMT watch lets you track multiple time zones with effortless style.",
     features: ["40mm Oystersteel", "GMT Function", "Dual Time Zone", "Rotatable Bezel"],
@@ -455,7 +455,7 @@ export const products: Product[] = [
     rating: 4.9,
     reviews: 501,
     gender: "men",
-    image: "/images/omega-speedmaster.jpeg",
+    image: "/images/omega4.jpeg",
     description:
       "An iconic chronograph with a rich space legacy, crafted for precision and everyday wear.",
     features: ["42mm Steel", "Manual Wind", "Chronograph", "Sapphire Crystal"],

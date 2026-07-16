@@ -44,12 +44,19 @@ export function FeaturedProducts() {
           ))}
         </div>
 
-        {/* Products Grid */}
-        <m.div layout className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
-          {products.map((product, i) => (
-            <ProductCard key={product.id} product={product} index={i} />
-          ))}
-        </m.div>
+        <div className="relative group/scroll">
+  {/* ساید سایه‌ها برای زیبایی */}
+  <div className="absolute start-0 top-0 bottom-0 w-12 bg-gradient-to-r from-[#0E1629] to-transparent z-10 pointer-events-none opacity-0 group-hover/scroll:opacity-100 transition-opacity" />
+  <div className="absolute end-0 top-0 bottom-0 w-12 bg-gradient-to-l from-[#0E1629] to-transparent z-10 pointer-events-none opacity-0 group-hover/scroll:opacity-100 transition-opacity" />
+
+  <div className="flex gap-5 overflow-x-auto pb-4 snap-x snap-mandatory scrollbar-hide -mx-6 px-6">
+    {products.map((product, i) => (
+      <div key={product.id} className="snap-start">
+        <ProductCard product={product} index={i} />
+      </div>
+    ))}
+  </div>
+</div>
 
         {/* View All */}
         <div className="text-center mt-12">

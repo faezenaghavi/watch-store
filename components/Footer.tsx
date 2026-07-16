@@ -64,7 +64,7 @@ export function Footer() {
     <footer className="relative border-t border-white/5">
       <div className="max-w-7xl mx-auto px-6">
 
-        {/* ── Newsletter: بدون بک‌گراند ── */}
+        {/* ── Newsletter ── */}
         <div className="py-16 border-b border-white/5">
           <div className="max-w-xl mx-auto text-center">
             <h3
@@ -96,10 +96,10 @@ export function Footer() {
         </div>
       </div>
 
-      {/* ── لینک‌ها و کپی‌رایت: با بک‌گراند ساعت ── */}
+      {/* ── لینک‌ها و کپی‌رایت ── */}
       <div className="relative overflow-hidden">
         <img
-          src="https://images.unsplash.com/photo-1523170335258-f5ed11844a49?w=1200&q=80"
+          src="./images/footer.png"
           alt=""
           className="absolute inset-0 w-full h-full object-cover"
           aria-hidden="true"
@@ -129,39 +129,37 @@ export function Footer() {
         />
 
         <div className="relative z-10 max-w-7xl mx-auto px-6">
-          <div className="py-16 grid grid-cols-2 md:grid-cols-4 gap-8">
+          {/* ── لینک‌ها به صورت ردیفی + تگ ── */}
+          <div className="py-12 space-y-5">
             {linkGroups.map((group) => (
               <div key={group.titleKey}>
                 <h4
-                  className={`text-xs font-medium text-white mb-5 ${
+                  className={`text-[11px] font-medium text-[#D4A574] mb-3 ${
                     isRTL ? '' : 'tracking-[0.2em] uppercase'
                   }`}
                 >
                   {t(group.titleKey)}
                 </h4>
-                <ul className="space-y-3">
+                <div className="flex flex-wrap gap-2">
                   {group.links.map((link, linkIndex) => (
-                    <li
+                    <Link
                       key={`${group.titleKey}-${
                         link.key ?? (link as { label: string }).label
                       }-${linkIndex}`}
+                      href={link.href}
+                      className="text-[13px] text-[#D9D9D9]/50 hover:text-white px-3 py-1.5 rounded-lg border border-white/[0.04] hover:border-white/10 hover:bg-white/[0.04] transition-all duration-300"
                     >
-                      <Link
-                        href={link.href}
-                        className="text-sm text-[#D9D9D9]/60 hover:text-white transition-colors duration-300"
-                      >
-                        {link.key
-                          ? t(link.key as Parameters<typeof t>[0])
-                          : (link as { label: string }).label}
-                      </Link>
-                    </li>
+                      {link.key
+                        ? t(link.key as Parameters<typeof t>[0])
+                        : (link as { label: string }).label}
+                    </Link>
                   ))}
-                </ul>
+                </div>
               </div>
             ))}
           </div>
 
-          <div className="py-8 border-t border-white/5 flex flex-col md:flex-row items-center justify-between gap-4">
+          <div className="py-6 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between gap-4">
             <div className="flex items-center gap-3">
               <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-[#4A7BFF] to-[#3360DD] flex items-center justify-center">
                 <span

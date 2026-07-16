@@ -3,6 +3,7 @@
 
 import { m } from 'framer-motion';
 import { SectionHeading } from './SectionHeading';
+import { FloatingDiamonds } from './FloatingDiamonds';
 import { HiOutlineShieldCheck, HiOutlineClock, HiOutlineSparkles, HiOutlineGlobe } from 'react-icons/hi';
 import { useTranslations } from 'next-intl';
 
@@ -27,7 +28,10 @@ export function AboutSection() {
     <section className="py-24 px-6 relative overflow-hidden">
       <div className="absolute top-0 end-0 w-[500px] h-[500px] rounded-full bg-[#4A7BFF] opacity-[0.03] blur-[180px]" />
 
-      <div className="max-w-7xl mx-auto">
+      {/* پس‌زمینه‌ی الماس‌های شناور مینیمال */}
+      <FloatingDiamonds />
+
+      <div className="max-w-7xl mx-auto relative z-10">
         <SectionHeading label={t('label')} title={t('title')} subtitle={t('subtitle')} />
 
         {/* Stats */}

@@ -5,6 +5,8 @@ import { FeaturedProducts } from '@/components/FeaturedProducts';
 import { AboutSection } from '@/components/AboutSection';
 import AssemblySceneLoader from '@/components/watch-3d/AssemblySceneLoader';
 
+import BrandStory from '@/components/BrandStory';
+
 interface LocalePageProps {
   params: Promise<{ locale: string }>;
 }
@@ -24,13 +26,45 @@ export default async function LocalePage({ params }: LocalePageProps) {
         tag: 'Engineering Excellence',
         title: 'The Art of Assembly',
         description:
-          'Witness the precision engineering behind every timepiece. Over 200 components assembled with Swiss precision to create mechanical perfection.',
+          
+        'Witness the precision engineering behind every timepiece. Over 200 components assembled with Swiss precision to create mechanical perfection.',
       };
+
+      const storyCopy = isRTL
+  ? {
+      label: 'داستان ما',
+      title: 'ساعت الهام‌بخش امسال',
+      description:
+        'جدیدترین و مدرن‌ترین ساعت‌های امسال، در انواع مختلف در این فروشگاه موجود است، همین حالا کشف کنید.',
+      button: 'کشف کنید',
+    }
+  : {
+      label: 'OUR STORY',
+      title: 'Inspirational Watch of this year',
+      description:
+        'The latest and modern watches of this year, is available in various presentations in this store, discover them now.',
+      button: 'Discover',
+    };
 
   return (
     <>
       <Hero />
       <BrandCategories />
+     <BrandStory
+  id="brand-story"
+  dir={isRTL ? 'rtl' : 'ltr'}
+  label={isRTL ? 'داستان ما' : 'OUR STORY'}
+  title={isRTL ? 'ساعت الهام‌بخش امسال' : 'Inspirational Watch of this year'}
+  description={
+    isRTL
+      ? 'جدیدترین و مدرن‌ترین ساعت‌های امسال، در انواع مختلف در این فروشگاه موجود است، همین حالا کشف کنید.'
+      : 'The latest and modern watches of this year, is available in various presentations in this store, discover them now.'
+  }
+  buttonText={isRTL ? 'کشف کنید' : 'Discover'}
+  buttonHref="/collections"
+  imageSrc="/images/rolex.jpeg"
+  imageAlt={isRTL ? 'ساعت الهام‌بخش' : 'Inspirational watch'}
+/>
       <FeaturedProducts />
       <AboutSection />
 

@@ -66,7 +66,7 @@ export function ProductCard({
       transition={{ duration: 0.5, delay: index * 0.08 }}
       className="group"
     >
-      <div className="glass-card rounded-2xl overflow-hidden transition-all duration-500 hover:border-white/20 hover:shadow-[0_0_40px_rgba(74,123,255,0.08)]">
+      <div className="glass-card rounded-2xl overflow-hidden transition-all duration-500 hover:border-white/20 hover:shadow-[0_0_40px_rgba(74,123,255,0.08)] w-[280px] sm:w-[300px] flex-shrink-0">
         {/* Image */}
         <div className="relative aspect-square overflow-hidden bg-gradient-to-br from-[#1A2342] to-[#0E1629]">
           <Link
@@ -163,11 +163,11 @@ export function ProductCard({
 
             <div className="flex items-center gap-3">
               <span className="text-lg font-bold text-white">
-                {formatPrice(product.price)}
+                {formatPrice(product.price, locale)}
               </span>
               {product.originalPrice && (
                 <span className="text-sm text-[#D9D9D9]/40 line-through">
-                  {formatPrice(product.originalPrice)}
+                  {formatPrice(product.originalPrice, locale)}
                 </span>
               )}
             </div>

@@ -24,21 +24,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    /*
-     * ✅ lang و dir رو اینجا НЕ قرار بده —
-     * چون هنوز locale رو نداریم.
-     * فقط فونت و base کلاس‌ها.
-     */
     <html
       lang="en"
       className="scroll-smooth"
       data-scroll-behavior="smooth"
       suppressHydrationWarning
     >
-      <body
-        className={`${iranMarker.variable} font-sans antialiased`}
-        suppressHydrationWarning
-      >
+      <body className={`${iranMarker.variable} font-sans antialiased`} suppressHydrationWarning>
         <AppProviders>{children}</AppProviders>
       </body>
     </html>

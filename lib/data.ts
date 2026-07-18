@@ -470,7 +470,7 @@ export const products: Product[] = [
     rating: 4.7,
     reviews: 174,
     gender: "women",
-    image: "/images/omega-deville.jpeg",
+    image: "/images/omega5.jpeg",
     description:
       "Elegant and refined, this dress watch delivers timeless styling for formal and daily use.",
     features: ["36mm Steel", "Quartz Movement", "Roman Numerals", "Slim Profile"],
@@ -485,7 +485,7 @@ export const products: Product[] = [
     rating: 4.8,
     reviews: 366,
     gender: "men",
-    image: "/images/tissot-gentleman.jpeg",
+    image: "/images/tissot2.jpeg",
     description:
       "A versatile everyday watch with a balanced design, strong movement, and premium finishing.",
     features: ["40mm Steel", "Powermatic 80", "80h Power Reserve", "Sapphire Crystal"],
@@ -499,7 +499,7 @@ export const products: Product[] = [
     rating: 4.7,
     reviews: 245,
     gender: "men",
-    image: "/images/tissot-seastar.jpeg",
+    image: "/images/tissot3.jpeg",
     description:
       "A robust dive watch built for water sports and adventure with a bold modern design.",
     features: ["43mm Steel", "300m Water Resistant", "Unidirectional Bezel", "Swiss Made"],
@@ -513,7 +513,7 @@ export const products: Product[] = [
     rating: 4.4,
     reviews: 418,
     gender: "men",
-    image: "/images/casio-edifice.jpeg",
+    image: "/images/casio2.jpeg",
     description:
       "A sharp and sporty chronograph that combines speed-inspired styling with practical features.",
     features: ["45mm Steel", "Chronograph", "Date Display", "Scratch Resistant Crystal"],
@@ -527,7 +527,7 @@ export const products: Product[] = [
     rating: 4.8,
     reviews: 529,
     gender: "men",
-    image: "/images/casio-rangeman.jpeg",
+    image: "/images/casio3.jpeg",
     description:
       "A rugged outdoor watch with advanced durability and reliable performance in extreme conditions.",
     features: ["Shock Resistant", "Solar Powered", "Triple Sensor", "200m Water Resistant"],
@@ -556,7 +556,7 @@ export const products: Product[] = [
     rating: 4.7,
     reviews: 260,
     gender: "women",
-    image: "/images/seiko-cocktailtime.jpeg",
+    image: "/images/seiko4.jpeg",
     description:
       "A refined dress watch inspired by classic cocktail culture, with a beautiful textured dial.",
     features: ["38.5mm Steel", "Automatic Movement", "Textured Dial", "Domed Crystal"],
@@ -598,7 +598,7 @@ export const products: Product[] = [
     rating: 4.7,
     reviews: 188,
     gender: "men",
-    image: "/images/longines-hydroconquest.jpeg",
+    image: "/images/longines5.jpeg",
     description:
       "A sporty Swiss dive watch with strong presence, functional design, and reliable performance.",
     features: ["41mm Steel", "Automatic Movement", "300m Water Resistant", "Ceramic Bezel"],
@@ -612,7 +612,7 @@ export const products: Product[] = [
     rating: 4.8,
     reviews: 141,
     gender: "men",
-    image: "/images/longines-spirit.jpeg",
+    image: "/images/longines4.jpeg",
     description:
       "A pilot-inspired watch that blends heritage styling with modern precision and elegance.",
     features: ["42mm Steel", "COSC Chronometer", "Automatic", "Anti-Reflective Sapphire"],
@@ -626,7 +626,7 @@ export const products: Product[] = [
     rating: 4.8,
     reviews: 206,
     gender: "women",
-    image: "/images/tagheuer-aquaracer.jpeg",
+    image: "/images/tagheuer3.jpeg",
     description:
       "A contemporary sports watch built for versatility, water resistance, and refined styling.",
     features: ["30mm Steel", "Quartz Movement", "200m Water Resistant", "Diamond Markers"],
@@ -640,7 +640,7 @@ export const products: Product[] = [
     rating: 4.7,
     reviews: 233,
     gender: "men",
-    image: "/images/tagheuer-formula1.jpeg",
+    image: "/images/tagheuer4.jpeg",
     description:
       "A motorsport-driven chronograph with bold details and a fast, energetic personality.",
     features: ["44mm Steel", "Chronograph", "Tachymeter", "Screw-Down Crown"],
@@ -654,7 +654,7 @@ export const products: Product[] = [
     rating: 4.6,
     reviews: 351,
     gender: "men",
-    image: "/images/orient-kamasu.jpeg",
+    image: "/images/orient2.jpeg",
     description:
       "A value-packed diver watch with strong water resistance and a clean classic look.",
     features: ["41.8mm Steel", "Automatic Movement", "200m Water Resistant", "Sapphire Crystal"],
@@ -669,7 +669,7 @@ export const products: Product[] = [
     rating: 4.4,
     reviews: 489,
     gender: "men",
-    image: "/images/fossil-machine.jpeg",
+    image: "/images/fossil2.jpeg",
     description:
       "A bold everyday chronograph with industrial design details and a casual lifestyle feel.",
     features: ["44mm Steel", "Chronograph", "Date Display", "Leather Strap"],
@@ -683,7 +683,7 @@ export const products: Product[] = [
     rating: 4.3,
     reviews: 302,
     gender: "women",
-    image: "/images/fossil-hybrid.jpeg",
+    image: "/images/fossil3.jpeg",
     description:
       "A smart hybrid watch that keeps an analog feel while offering modern connected features.",
     features: ["Smart Hybrid", "Heart Rate Tracking", "Notifications", "Battery Saver Mode"],

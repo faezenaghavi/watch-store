@@ -25,13 +25,11 @@ export default async function LocaleLayout({
 
   setRequestLocale(locale);
   const messages = await getMessages();
-
   const dir = locale === "fa" ? "rtl" : "ltr";
 
   return (
     <ToastProvider>
-     
-      <div dir={dir} className={dir}>
+      <div dir={dir}>
         <NextIntlClientProvider messages={messages} locale={locale}>
           <LoadingScreen />
           <Navbar />

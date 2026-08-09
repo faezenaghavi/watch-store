@@ -7,6 +7,7 @@ import { getMessages, setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
 import { locales, type Locale } from "@/lib/i18n";
 import { ToastProvider } from "@/components/Toast";
+import { Suspense } from "react";
 
 export function generateStaticParams() {
   return locales.map((locale) => ({ locale }));
@@ -32,9 +33,17 @@ export default async function LocaleLayout({
       <div dir={dir}>
         <NextIntlClientProvider messages={messages} locale={locale}>
           <LoadingScreen />
-          <Navbar />
+
+          <Suspense fallback={null}>
+            <Navbar />
+          </Suspense>
+
           <CartDrawer />
-          <main className="min-h-screen pt-28">{children}</main>
+
+          <main className="min-h-screen pt-28">
+            {children}
+          </main>
+
           <Footer />
         </NextIntlClientProvider>
       </div>

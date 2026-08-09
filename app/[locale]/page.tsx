@@ -157,7 +157,7 @@ export default async function LocalePage({ params }: LocalePageProps) {
           </div>
 
           {/* کانتینر ویدیو با استایل لوکس و شیشه‌ای */}
-          <div className="relative max-w-5xl mx-auto aspect-video rounded-3xl overflow-hidden border border-white/10 shadow-2xl luxury-shadow">
+          <div className="relative max-w-7xl mx-auto aspect-video rounded-3xl overflow-hidden border border-white/10 shadow-2xl luxury-shadow">
             {/* یک گرادیان ظریف برای ترکیب بهتر لبه‌های ویدیو با بک‌گراند تیره سایت */}
             <div className="absolute inset-0 bg-gradient-to-t from-[#0E1629]/60 via-transparent to-transparent z-10 pointer-events-none" />
 
@@ -169,7 +169,7 @@ export default async function LocalePage({ params }: LocalePageProps) {
               playsInline
               className="w-full h-full object-cover"
             >
-              <source src="/videos/watch-demo.mp4" type="video/mp4" />
+              <source src="/images/ass.mp4" type="video/mp4" />
               مرورگر شما از پخش ویدیو پشتیبانی نمی‌کند.
             </video>
           </div>
